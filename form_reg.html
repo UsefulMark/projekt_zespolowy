@@ -29,46 +29,38 @@
             height: 20vh;
         }
 
-        #registerEmail{
-            background-color: rgb(85, 83, 81);
-            color:darkturquoise;
-        }
-
-        #registerPassword{
-            background-color: rgb(85, 83, 81);
-            color:darkturquoise;
-        }
+    
 
         .form-group
         {
             font-weight: 500;
         }
 
-        #form3Example1
+        #FirstName
         {
             background-color: rgb(85, 83, 81);
             color:darkturquoise;
         }
 
-        #form3Example2
+        #LastName
         {
             background-color: rgb(85, 83, 81);
             color:darkturquoise;
         }
 
-        #form3Example3
+        #Email
         {
             background-color: rgb(85, 83, 81);
             color:darkturquoise;
         }
 
-        #form3Example4
+        #Password
         {
             background-color: rgb(85, 83, 81);
             color:darkturquoise;
         }
 
-        #form3Example5
+        #ConfirmPassword
         {
             background-color: rgb(85, 83, 81);
             color:darkturquoise;
@@ -97,39 +89,38 @@
 <div class="login-container">
     <form action="process.php" method="post">
         <!-- 2 column grid layout with text inputs for the first and last names -->
-        <h2 class="text-center mb-4">Reg Page</h2>
+        <h2 class="text-center mb-4">Witamy na stronie rejestracji</h2>
         <div class="row mb-4">   
         <div class="col">
             <div class="form-outline">
-            <input type="text" id="firstName" class="form-control" />
-            <label class="form-label" for="firstName"><i class="icon-user"></i> First Name</label>
-            <label class="form-label" name="firstName" for="firstName"><i class="icon-user"></i> First Name</label>
+            <input type="text" id="FirstName" class="form-control" />
+            <label class="form-label" name="FirstName" for="FirstName"><i class="icon-user"></i> First Name</label>
             </div>
         </div>
         <div class="col">
             <div class="form-outline">
-            <input type="text" id="lastname" class="form-control" />
-            <label class="form-label" name="lastname" for="lastname"><i class="icon-user"></i> Last Name</label>
+            <input type="text" id="LastName" class="form-control" />
+            <label class="form-label" name="LastName" for="LastName"><i class="icon-user"></i> Last Name</label>
             </div>
         </div>
         </div>
     
         <!-- Email input -->
         <div class="form-outline mb-4">
-        <input type="email" id="form3Example3" class="form-control" />
-        <label class="form-label" name="form3Example3" for="form3Example3"><i class="icon-mail"></i> Email Adress</label>
+        <input type="email" id="Email" class="form-control" />
+        <label class="form-label" name="Email" for="Email"><i class="icon-mail"></i> Email Adress</label>
         </div>
     
         <!-- Password input -->
         <div class="form-outline mb-4">
-        <input type="password" id="form3Example4" class="form-control" />
-        <label class="form-label" name="form3Example4" for="form3Example4"><i class="icon-lock"></i>Password</label>
+        <input type="password" id="Password" class="form-control" />
+        <label class="form-label" name="Password" for="Password"><i class="icon-lock"></i>Password</label>
         </div>
 
         <!-- Password repeat -->
         <div class="form-outline mb-4">
-        <input type="password" id="form3Example5" class="form-control" />
-        <label class="form-label" name="form3Example5" for="form3Example5"><i class="icon-lock"></i>Confirm Password</label>
+        <input type="password" id="ConfirmPassword" class="form-control" />
+        <label class="form-label" name="ConfirmPassword" for="ConfirmPassword"><i class="icon-lock"></i>Confirm Password</label>
         </div>
     
         <!-- Checkbox -->
