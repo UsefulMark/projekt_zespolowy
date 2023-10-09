@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Logowania</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(44, 44, 44);
+            color: aliceblue;
+        }
+
+        .login-container {
+            width: 300px;
+            margin: 13vh;
+        }
+
+        img{
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            height: 20vh;
+        }
+
+        #registerEmail{
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        #registerPassword{
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        .form-group{
+            font-weight: 500;
+        }
+
+        a{
+            text-decoration: none;
+            color: aliceblue;
+        }
+        .btn{
+            background-color: red;
+            border-style: solid ;
+            border-color: aliceblue;
+            border-width: 1px;
+        }
+
+        .btn:hover{
+            background-color: rgb(177, 73, 42);;
+            border-style: solid ;
+            border-color: aliceblue;
+            border-width: 1px;
+        }
+
+    </style>
+</head>
+<body>
+<img src="logo.svg"/>
+<div class="login-container">
+    
+    <h2 class="text-center mb-4">Witamy na stronie logowania</h2>
+    
+    <form action="process_login.php" method="post">
+        <div class="form-group">
+            <label class="form-label" for="registerEmail">Email</label>
+            <input type="email" id="registerEmail" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="registerPassword">Password</label>
+            <input type="password" id="registerPassword" class="form-control" />
+        </div>
+
+        <!-- Checkbox -->
+      <div class="form-check d-flex justify-content-center mb-4">
+        <label class="form-check-label" for="registerCheck">
+            Zapamiętaj mnie
+          </label>
+          <br>
+        <input  type="checkbox" value="" id="registerCheck" checked
+          aria-describedby="registerCheckHelpText" />
+        
+      </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Zaloguj się</button>
+
+        <button type="button" class="btn btn-primary btn-block" onclick="window.location.href='rejestracja.html'">Zarejestruj się</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

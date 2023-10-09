@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Logowania</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontello\css\fontello.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(44, 44, 44);
+            color: aliceblue;
+        }
+
+        .login-container {
+            width: 500px;
+            margin: 13vh;
+        }
+
+        img{
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            height: 20vh;
+        }
+
+        #registerEmail{
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        #registerPassword{
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        .form-group
+        {
+            font-weight: 500;
+        }
+
+        #form3Example1
+        {
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        #form3Example2
+        {
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        #form3Example3
+        {
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        #form3Example4
+        {
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        #form3Example5
+        {
+            background-color: rgb(85, 83, 81);
+            color:darkturquoise;
+        }
+
+        a{
+            text-decoration: none;
+            color: aliceblue;
+        }
+        .btn{
+            background-color: red;
+            border-style: solid ;
+            border-color: aliceblue;
+            border-width: 1px;
+        }
+
+        .btn:hover{
+            background-color: rgb(177, 73, 42);;
+            border-style: solid ;
+            border-color: aliceblue;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <form action="process.php" method="post">
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <h2 class="text-center mb-4">Witamy na stronie rejestracji</h2>
+        <div class="row mb-4">   
+        <div class="col">
+            <div class="form-outline">
+            <input type="text" id="form3Example1" class="form-control" />
+            <label class="form-label" for="form3Example1"><i class="icon-user"></i> Imię</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+            <input type="text" id="form3Example2" class="form-control" />
+            <label class="form-label" for="form3Example2"><i class="icon-user"></i> Nazwisko</label>
+            </div>
+        </div>
+        </div>
+    
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+        <input type="email" id="form3Example3" class="form-control" />
+        <label class="form-label" for="form3Example3"><i class="icon-mail"></i>Adress Email</label>
+        </div>
+    
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+        <input type="password" id="form3Example4" class="form-control" />
+        <label class="form-label" for="form3Example4"><i class="icon-lock"></i>Podaj hasło</label>
+        </div>
+
+        <!-- Password repeat -->
+        <div class="form-outline mb-4">
+        <input type="password" id="form3Example5" class="form-control" />
+        <label class="form-label" for="form3Example5"><i class="icon-lock"></i>Powtórz hasło</label>
+        </div>
+    
+        <!-- Checkbox -->
+        <!-- <div class="form-check d-flex justify-content-center mb-4">
+        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+        <label class="form-check-label" for="form2Example33">
+            Subscribe to our newsletter
+        </label> -->
+
+  
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Zarejestruj się</button>
+    
+       
+  </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
