@@ -63,7 +63,7 @@ body {
 .nav-toggle:active {
 	width: 85px;
 	height: 77px;
-	transition: all 0.2s ease-in-out;
+	transition: all 0.1s ease-in-out;
 }
 
 .nav-close {
@@ -78,19 +78,19 @@ body {
 #nav-toggle:checked ~ .nav-close {
 	opacity: 1;
 	transition: all 0.3s ease-in-out;
-	transition-delay: 5.5s;
+	transition-delay: 0.5s;
 }
 
 .nav-toggle:hover {
 	transform: scale(1.1);
-	transition: all 0.2s ease-in-out;
+	transition: all 0.01s ease-in-out;
 }
 
 #nav-toggle:checked + .nav-toggle {
 	transform: rotateZ(90deg);
 	transition: all 0.5s ease-in-out;
 	animation: nav-open 1s ease-in-out 1;
-	animation-delay: 0.5s;
+	animation-delay: 0.1s;
 	animation-fill-mode: forwards;
 }
 
@@ -141,7 +141,7 @@ body {
 	height: 33.3%;
 	transition: all 1s ease-in-out;
 	transition-delay: 0.5s;
-	animation-delay: 1s;
+	animation-delay: 0.1s;
 	animation-fill-mode: forwards;
 }
 
@@ -211,13 +211,13 @@ body {
 
 #nav-toggle:checked ~ .logo-draw .cls-1 {
 	animation: dash 4s ease-in-out 1;
-	animation-delay: 1.3s;
+	animation-delay: 0.1s;
 	animation-fill-mode: forwards;
 }
 
 #nav-toggle:checked ~ .logo-draw > svg:nth-child(2) > * {
 	animation: fade-in 2.5s ease-in-out 1;
-	animation-delay: 1.3s;
+	animation-delay: 0.1s;
 	animation-fill-mode: forwards;
 }
 
@@ -272,9 +272,9 @@ nav {
 #nav-toggle:checked ~ nav {
 	bottom: 0;
 	transition: all 1s ease-in-out;
-	transition-delay: 3.5s;
-	animation: mask 1s ease-in-out 1;
-	animation-delay: 3.5s;
+	transition-delay: 0.1s;
+	animation: mask 0.1s ease-in-out 1;
+	animation-delay: 0.1s;
 	animation-fill-mode: forwards;
 }
 
@@ -375,28 +375,28 @@ nav > ul > li > a:hover {
 
 nav > ul > li:nth-child(1) {
 	transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s !important;
-	transition-delay: 4s !important;
+	transition-delay: 0.4s !important;
 	left: 0;
 	background: #ff0000;
 }
 
 nav > ul > li:nth-child(2) {
 	transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s !important;
-	transition-delay: 4.3s !important;
+	transition-delay: 0.3s !important;
 	left: 20%;
 	background: #e27f00;
 }
 
 nav > ul > li:nth-child(3) {
 	transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s !important;
-	transition-delay: 4.6s !important;
+	transition-delay: 0.2s !important;
 	left: 40%;
 	background: #c4a700;
 }
 
 nav > ul > li:nth-child(4) {
 	transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s !important;
-	transition-delay: 4.9s !important;
+	transition-delay: 0.1s !important;
 	left: 60%;
 	background: #8bd528;
 }
