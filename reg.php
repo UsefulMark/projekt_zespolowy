@@ -34,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = sqlsrv_query($conn, $sql, $params);
 
         if ($stmt === false) {
-            echo "Błąd podczas dodawania użytkownika: " . sqlsrv_errors();
+            die("Błąd podczas dodawania użytkownika: " . sqlsrv_errors());
         } else {
-            echo "Rejestracja udana. Możesz teraz zalogować się na swoje konto.";
-            // Przekierowanie na stronę logowania lub inny widok
+            header("Location: sukces.html"); // Przekierowanie na stronę sukcesu
+            exit();
         }
     }
 
