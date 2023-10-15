@@ -18,7 +18,7 @@ $imie = $_POST['imie'];
 $nazwisko = $_POST['nazwisko'];
 $login = $_POST['login'];
 $haslo = $_POST['haslo'];
-$numer_gatunku = $_POST['numer_gatunku'];
+$numer_gatunku = $_POST['numer_gatunku']; // Dodano pobieranie numeru gatunku
 
 // Sprawdzenie, czy użytkownik o podanym loginie już istnieje
 $sql_check = "SELECT COUNT(*) as count FROM users WHERE login = ?";
@@ -43,8 +43,8 @@ if ($row['count'] > 0) {
 // Użytkownik o podanym loginie nie istnieje, można dokonać rejestracji
 
 // Wprowadzenie danych do bazy danych
-$sql = "INSERT INTO users (imie, nazwisko, login, haslo,numer_gatunku) VALUES (?, ?, ?, ?,?)";
-$params = array($imie, $nazwisko, $login, $haslo);
+$sql = "INSERT INTO users (imie, nazwisko, login, haslo, numer_gatunku) VALUES (?, ?, ?, ?, ?)"; // Dodano "numer_gatunku" do zapytania
+$params = array($imie, $nazwisko, $login, $haslo, $numer_gatunku); // Dodano $numer_gatunku do tablicy $params
 $stmt = sqlsrv_query($conn, $sql, $params);
 
 if ($stmt === false) {
@@ -58,5 +58,5 @@ echo '<script>alert("Zarejestrowano użytkownika: ' . $login . '");</script>';
 sqlsrv_close($conn);
 
 // Przekierowanie na stronę "index.html" po 3 sekundach
-echo '<script>window.setTimeout(function() { window.location = "index.html"; }, 100);</script>';
+echo '<script>window.setTimeout(function() { window.location = "index.html"; }, 3000);</script>'; // Poprawiono czas opóźnienia
 ?>
