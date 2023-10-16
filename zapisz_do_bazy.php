@@ -51,6 +51,14 @@ if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
+// Utwórz tabelę dla użytkownika
+$sql_create_table = "CREATE TABLE $login (ocena INT, nazwa VARCHAR(255))";
+$stmt_create_table = sqlsrv_query($conn, $sql_create_table);
+
+if ($stmt_create_table === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
 // Zarejestrowano użytkownika, wyświetl komunikat w przeglądarce
 echo '<script>alert("Zarejestrowano użytkownika: ' . $login . '");</script>';
 

@@ -8,17 +8,82 @@
 <body>
     <h1>Panel użytkownika</h1>
     <?php
-    session_start(); // Rozpocznij sesję (jeśli jeszcze nie rozpoczęta)
+session_start(); // Rozpocznij sesję (jeśli jeszcze nie rozpoczęta)
+// Wczytaj dane filmów z pliku CSV
+$lines = file('gatunek.csv'); // Zastąp 'gatunek.csv' ścieżką do twojego pliku CSV
+$filmy = [];
 
-    // Sprawdź, czy użytkownik jest zalogowany (sprawdzamy, czy istnieje zmienna sesyjna "login")
-    if (isset($_SESSION['login'])) {
-        // Wyświetl zmienną sesyjną (login)
-        echo "Zalogowany użytkownik: " . $_SESSION['login'];
-    } else {
-        // Jeśli użytkownik nie jest zalogowany, przekieruj go na stronę logowania lub wyświetl odpowiedni komunikat
-        echo "Nie jesteś zalogowany. Proszę zaloguj się.";
-        // Możesz dodać przekierowanie na stronę logowania tutaj
+foreach ($lines as $line) {
+    $data = str_getcsv($line);
+    $tytul = $data[0];
+    $gatunek = $data[1];
+    $filmy[$gatunek][] = $tytul;
+}
+
+
+
+// Sprawdź, czy użytkownik jest zalogowany (sprawdzamy, czy istnieje zmienna sesyjna "login")
+if (isset($_SESSION['login'])) {
+    // Połącz się z bazą danych MSSQL
+    $serverName = "WIN-8PODA49PE73\\PANDORABASE"; // Adres serwera MSSQL
+    $connectionOptions = array(
+        "Database" => "Projekt", // Nazwa bazy danych
+        "Uid" => "sa", // Login użytkownika MSSQL
+        "PWD" => "zaq1@WSX" // Hasło użytkownika MSSQL
+    );
+
+    $conn = sqlsrv_connect($serverName, $connectionOptions);
+
+    if (!$conn) {
+        die("Błąd połączenia z bazą danych: " . sqlsrv_errors());
     }
-    ?>
+
+    // Pobierz numer gatunku z bazy danych na podstawie zalogowanego użytkownika
+    $login = $_SESSION['login'];
+
+    $sql_get_gatunku = "SELECT numer_gatunku FROM users WHERE login = ?";
+    $params_get_gatunku = array($login);
+    $stmt_get_gatunku = sqlsrv_query($conn, $sql_get_gatunku, $params_get_gatunku);
+
+    if ($stmt_get_gatunku === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+
+    $row_get_gatunku = sqlsrv_fetch_array($stmt_get_gatunku, SQLSRV_FETCH_ASSOC);
+
+    $numerGatunku = $row_get_gatunku['numer_gatunku'];
+
+    // Wyświetl numer gatunku
+    echo "Numer gatunku: " . $numerGatunku;
+
+    echo "Login w sesji: " . $login;
+
+    // Pobierz filmy na podstawie numeru gatunku
+    if (isset($filmy[$numerGatunku])) {
+        $rekomendacje = array_rand(array_slice($filmy[$numerGatunku], 1), 3);
+    } else {
+        $rekomendacje = array(); // Jeśli numer gatunku jest niepoprawny, nie wyświetlaj rekomendacji
+    }
+
+    if (!empty($rekomendacje)) {
+        echo "<h3>Top 3 filmy w wybranym gatunku:</h3>";
+        echo "<ul>";
+        foreach ($rekomendacje as $filmIndex) {
+            echo "<li>" . $filmy[$numerGatunku][$filmIndex + 1] . "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p>Niepoprawny numer gatunku.</p>";
+    }
+
+    // Zamykanie połączenia z bazą danych
+    sqlsrv_close($conn);
+} else {
+    // Jeśli użytkownik nie jest zalogowany, przekieruj go na stronę logowania lub wyświetl odpowiedni komunikat
+    echo "Nie jesteś zalogowany. Proszę zaloguj się.";
+    // Możesz dodać przekierowanie na stronę logowania tutaj
+}
+?>
+
 </body>
 </html>
