@@ -316,7 +316,7 @@ nav > ul > li {
 	overflow: hidden;
 	z-index: 0;
 	transition: none;
-	float: left;
+	float: left; 
 }
 
 #nav-toggle:checked ~ nav > ul > li {
