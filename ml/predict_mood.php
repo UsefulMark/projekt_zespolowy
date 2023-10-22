@@ -17,6 +17,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Przewiduj nastroju na podstawie danych wejściowych
     $predicted = $classyfier->predict([$ilość_snu, $ilość_aktywności, $poziom_stresu, $samopoczucie]);
 }
+/*
+    // Dodaj warunek, który wyświetli trzy losowe filmy z gatunkiem 1 w przypadku "smutny" nastroju
+    if ($predicted === 'smutny') {
+        // Wczytaj filmy z gatunkiem 1 z pliku CSV
+        $csv = array_map('str_getcsv', file('gatunek.csv'));
+        $smutne_filmy = array();
+
+        // Znajdź filmy z gatunkiem 1
+        foreach ($csv as $row) {
+            if ($row[1] === '1') {
+                $smutne_filmy[] = $row[0];
+            }
+        }
+
+        // Wybierz trzy losowe filmy z gatunkiem 1
+        $losowe_filmy = array_rand($smutne_filmy, 3);
+
+        // Wyświetl wybrane filmy
+        echo "Trzy losowe filmy z gatunkiem 1:<br>";
+        foreach ($losowe_filmy as $index) {
+            echo $smutne_filmy[$index] . "<br>";
+        }
+    }
+
+
+
+    if ($predicted === 'szczęśliwy') {
+        // Wczytaj filmy z gatunkiem 2 z pliku CSV
+        $csv = array_map('str_getcsv', file('gatunek.csv'));
+        $smutne_filmy = array();
+
+        // Znajdź filmy z gatunkiem 1
+        foreach ($csv as $row) {
+            if ($row[1] === '2') {
+                $smutne_filmy[] = $row[0];
+            }
+        }
+
+        // Wybierz trzy losowe filmy z gatunkiem 2
+        $losowe_filmy = array_rand($smutne_filmy, 3);
+
+        // Wyświetl wybrane filmy
+        echo "Trzy losowe filmy z gatunkiem 2:<br>";
+        foreach ($losowe_filmy as $index) {
+            echo $smutne_filmy[$index] . "<br>";
+        }
+    }
+
+
+
+    
+    if ($predicted === 'neutralny') {
+        // Wczytaj filmy z gatunkiem 3 z pliku CSV
+        $csv = array_map('str_getcsv', file('gatunek.csv'));
+        $smutne_filmy = array();
+
+        // Znajdź filmy z gatunkiem 3
+        foreach ($csv as $row) {
+            if ($row[1] === '3') {
+                $smutne_filmy[] = $row[0];
+            }
+        }
+
+        // Wybierz trzy losowe filmy z gatunkiem 3
+        $losowe_filmy = array_rand($smutne_filmy, 3);
+
+        // Wyświetl wybrane filmy
+        echo "Trzy losowe filmy z gatunkiem 3:<br>";
+        foreach ($losowe_filmy as $index) {
+            echo $smutne_filmy[$index] . "<br>";
+        }
+    }
+
+
+*/
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +124,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1>Wynik przewidywania nastroju</h1>
                 <?php if (isset($predicted)): ?>
                     <div class="result-container">
-                        <h2>Przewidziany mood:</h2>
-                        <p>Przewidziany nastrój: <?php echo $predicted; ?></p>
+                        <h2>Przewidziany nastrój: <?php echo $predicted; ?></h2>
+                        <?php
+                        if ($predicted === 'smutny') {
+                            // Wyświetl trzy losowe filmy z gatunkiem 1 jako linki do wyników wyszukiwania w Google
+                            echo "Trzy losowe filmy z gatunkiem 1:<br>";
+                            $csv = array_map('str_getcsv', file('gatunek.csv'));
+                            $smutne_filmy = array();
+                            foreach ($csv as $row) {
+                                if ($row[1] === '1') {
+                                    $smutne_filmy[] = $row[0];
+                                }
+                            }
+                            $losowe_filmy = array_rand($smutne_filmy, 3);
+                            foreach ($losowe_filmy as $index) {
+                                $film = $smutne_filmy[$index];
+                                echo "<a href='https://www.google.com/search?q=" . urlencode($film) . "' target='_blank'>$film</a><br>";
+                            }
+                        } elseif ($predicted === 'szczęśliwy') {
+                            // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
+                            echo "Trzy losowe filmy z gatunkiem 2:<br>";
+                            $csv = array_map('str_getcsv', file('gatunek.csv'));
+                            $szczęśliwe_filmy = array();
+                            foreach ($csv as $row) {
+                                if ($row[1] === '2') {
+                                    $szczęśliwe_filmy[] = $row[0];
+                                }
+                            }
+                            $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
+                            foreach ($losowe_filmy as $index) {
+                                $film = $szczęśliwe_filmy[$index];
+                                echo "<a href='https://www.google.com/search?q=" . urlencode($film) . "' target='_blank'>$film</a><br>";
+                            }
+                        } elseif ($predicted === 'neutralny') {
+                            // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
+                            echo "Trzy losowe filmy z gatunkiem 3:<br>";
+                            $csv = array_map('str_getcsv', file('gatunek.csv'));
+                            $neutralne_filmy = array();
+                            foreach ($csv as $row) {
+                                if ($row[1] === '3') {
+                                    $neutralne_filmy[] = $row[0];
+                                }
+                            }
+                            $losowe_filmy = array_rand($neutralne_filmy, 3);
+                            foreach ($losowe_filmy as $index) {
+                                $film = $neutralne_filmy[$index];
+                                echo "<a href='https://www.google.com/search?q=" . urlencode($film) . "' target='_blank'>$film</a><br>";
+                            }
+                        }
+                        ?>
                         <a href="../subpages/userpanel.php"><button class="btn btn-success">OK</button></a>
                     </div>
                 <?php endif; ?>

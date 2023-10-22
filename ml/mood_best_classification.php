@@ -11,7 +11,7 @@ use Phpml\Metric\Accuracy;
 use Phpml\ModelManager;
 
 // Wczytaj dane
-$data = new CsvDataset('./data/film.csv', 4, true);
+$data = new CsvDataset('./data/mood_data.csv', 4, true);
 
 // Podział na dane treningowe i testowe
 $dataset = new RandomSplit($data, 0.2);
