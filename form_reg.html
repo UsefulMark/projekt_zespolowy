@@ -1,86 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <title>Registration Form</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  </head>
     <style>
-        body {
-    background: #151515;
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+body {
+  background: #151515;
+  overflow: hidden;
+}
+::selection {
+  background: rgba(26, 188, 156, 0.3);
+}
+.container {
+    max-width: 475px; /* Decreased the max-width by 5% */
+    padding: 0 19px; /* Decreased padding by 5% */
+    margin: 95px auto; /* Decreased margin by 5% for vertical alignment */
+  }     
+.wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+  transform: scale(1.5); /* Powiększenie formularza*/
+}
+.wrapper .title {
+  height: 90px;
+  background: #AF57FF;
+  border-radius: 5px 5px 0 0;
+  color: #151515;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form {
+  padding: 30px 35px 35px 35px; /* Increased padding for more spacing */
+  background-color: #817E82;
+  color: #151515;
+  font-weight:bold;
+}
+form input: focus{
+background-color: #fff;
+color: #151515;
+}
+form input:valid{
+background-color: #BF47E6;
+}
+form input{
+float:right;
+background-color: #AF57FF;
+transition: background-color 0.3s;
+}
+form select{
+float:right;
+background-color: #AF57FF;
+transition: background-color 0.3s;
+}
+form select:hover{
+background-color: #BF47E6;
+}
+form select:valid{
+background-color: #BF47E6;
+}
+.wrapper form .row {
+  height: 45px;
+  margin-bottom: 20px; /* Increased margin for more spacing */
+  position: relative;
+}
+.wrapper form .row input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 60px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+form .row input:focus {
+  border-color: #151515;
+  box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
+}
+form .row input::placeholder {
+  color: #151515;
+}
+.wrapper form .row i {
+  position: absolute;
+  width: 47px;
+  height: 100%;
+  color: #151515;
+  font-size: 18px;
+  background: #16a085;
+  border: 1px solid #16a085;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form .pass {
+  margin: -8px 0 30px 0; /* Increased margin for more spacing */
+}
+.wrapper form .pass a {
+  color: #16a085;
+  font-size: 17px;
+  text-decoration: none;
+}
+.wrapper form .pass a:hover {
+  text-decoration: underline;
+}
+.wrapper form .button input {
+  color: #111;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  border-color: #111;
+  background-color: #AF57FF;
+  cursor: pointer;
+  margin-top: 5%;
+}
+form .button input:hover {
+  background: #BF47E6;
 }
 
-h2 {
-    background: #BF47E6;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 30px;
-    font-weight: 600;
-    padding: 15px;
-    margin: 20px auto;
-    width: 50%;
+.wrapper form .signup-link {
+  text-align: center;
+  margin-top: 25px; /* Increased margin for more spacing */
+  font-size: 17px;
 }
-
-form {
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    margin: 0 auto;
-    padding: 30px;
+.wrapper form .signup-link a {
+  color: #16a085;
+  text-decoration: none;
 }
-
-label {
-    display: block;
-    font-size: 16px;
-    margin: 10px 0;
+form .signup-link a:hover {
+  text-decoration: underline;
 }
-
-input[type="text"],
-input[type="password"],
-select {
-    width: 100%;
-    height: 45px;
-    font-size: 16px;
-    padding: 10px;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-select:focus,
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: #16a085;
-    box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
-}
-
-input[type="submit"] {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 10px;
-    background: #BF47E6;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-input[type="submit"]:hover {
-    background: #ED2B5D;
-}
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Registration Form</h2>
+  </style>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="title" color="white"><span>Registration</span></div>
         <form action="zapisz_do_bazy.php" method="post">
             <div class="form-group">
                 <label for="imie">Imię:</label>
@@ -109,13 +181,12 @@ input[type="submit"]:hover {
                     <option value="7">Science Fiction</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Zarejestruj</button>
+			<div class="row button">            
+            <input type="submit" value="Sign up">
+          </div>
         </form>
+      </div>
     </div>
-
-    <!-- Include Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
+s

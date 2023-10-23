@@ -34,13 +34,13 @@ body {
   background: #fff;
   border-radius: 5px;
   box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
-  transform: scale(2); /* Powiększenie formularza dwukrotnie */
+  transform: scale(1.5); /* Powiększenie formularza*/
 }
 .wrapper .title {
   height: 90px;
-  background: #BF47E6;
+  background: #AF57FF;
   border-radius: 5px 5px 0 0;
-  color: #fff;
+  color: #151515;
   font-size: 30px;
   font-weight: 600;
   display: flex;
@@ -49,7 +49,23 @@ body {
 }
 .wrapper form {
   padding: 30px 35px 35px 35px; /* Increased padding for more spacing */
+  background-color: #817E82;
+  color: #151515;
+  font-weight:bold;
 }
+form input: focus{
+background-color: #fff;
+color: #151515;
+}
+form input:valid{
+background-color: #BF47E6;
+}
+form input{
+float:right;
+background-color: #AF57FF;
+transition: background-color 0.3s;
+}
+
 .wrapper form .row {
   height: 45px;
   margin-bottom: 20px; /* Increased margin for more spacing */
@@ -66,17 +82,17 @@ body {
   transition: all 0.3s ease;
 }
 form .row input:focus {
-  border-color: #16a085;
-  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+  border-color: #151515;
+  box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
 }
 form .row input::placeholder {
-  color: #999;
+  color: #151515;
 }
 .wrapper form .row i {
   position: absolute;
   width: 47px;
   height: 100%;
-  color: #fff;
+  color: #151515;
   font-size: 18px;
   background: #16a085;
   border: 1px solid #16a085;
@@ -97,16 +113,17 @@ form .row input::placeholder {
   text-decoration: underline;
 }
 .wrapper form .button input {
-  color: #fff;
+  color: #111;
   font-size: 20px;
   font-weight: 500;
   padding-left: 0px;
-  background: #BF47E6;
+  border-color: #111;
+  background-color: #AF57FF;
   cursor: pointer;
   margin-top: 5%;
 }
 form .button input:hover {
-  background: #ED2B5D;
+  background: #BF47E6;
 }
 
 .wrapper form .signup-link {
@@ -121,8 +138,6 @@ form .button input:hover {
 form .signup-link a:hover {
   text-decoration: underline;
 }
-
-
   </style>
   <body>
     <div class="container">
