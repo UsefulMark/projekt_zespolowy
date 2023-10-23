@@ -10,34 +10,35 @@
   </head>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins',sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: black;
 }
-body{
-  background: #1abc9c;
+body {
+  background: #151515;
   overflow: hidden;
 }
-::selection{
-  background: rgba(26,188,156,0.3);
+::selection {
+  background: rgba(26, 188, 156, 0.3);
 }
-.container{
-  max-width: 440px;
-  padding: 0 20px;
-  margin: 170px auto;
-}
-.wrapper{
+.container {
+    max-width: 475px; /* Decreased the max-width by 5% */
+    padding: 0 19px; /* Decreased padding by 5% */
+    margin: 95px auto; /* Decreased margin by 5% for vertical alignment */
+  }     
+.wrapper {
   width: 100%;
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+  transform: scale(2); /* Powiększenie formularza dwukrotnie */
 }
-.wrapper .title{
+.wrapper .title {
   height: 90px;
-  background: #16a085;
+  background: #BF47E6;
   border-radius: 5px 5px 0 0;
   color: #fff;
   font-size: 30px;
@@ -46,15 +47,15 @@ body{
   align-items: center;
   justify-content: center;
 }
-.wrapper form{
-  padding: 30px 25px 25px 25px;
+.wrapper form {
+  padding: 30px 35px 35px 35px; /* Increased padding for more spacing */
 }
-.wrapper form .row{
+.wrapper form .row {
   height: 45px;
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin for more spacing */
   position: relative;
 }
-.wrapper form .row input{
+.wrapper form .row input {
   height: 100%;
   width: 100%;
   outline: none;
@@ -64,14 +65,14 @@ body{
   font-size: 16px;
   transition: all 0.3s ease;
 }
-form .row input:focus{
+form .row input:focus {
   border-color: #16a085;
-  box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
 }
-form .row input::placeholder{
+form .row input::placeholder {
   color: #999;
 }
-.wrapper form .row i{
+.wrapper form .row i {
   position: absolute;
   width: 47px;
   height: 100%;
@@ -84,41 +85,44 @@ form .row input::placeholder{
   align-items: center;
   justify-content: center;
 }
-.wrapper form .pass{
-  margin: -8px 0 20px 0;
+.wrapper form .pass {
+  margin: -8px 0 30px 0; /* Increased margin for more spacing */
 }
-.wrapper form .pass a{
+.wrapper form .pass a {
   color: #16a085;
   font-size: 17px;
   text-decoration: none;
 }
-.wrapper form .pass a:hover{
+.wrapper form .pass a:hover {
   text-decoration: underline;
 }
-.wrapper form .button input{
+.wrapper form .button input {
   color: #fff;
   font-size: 20px;
   font-weight: 500;
   padding-left: 0px;
-  background: #16a085;
-  border: 1px solid #16a085;
+  background: #BF47E6;
   cursor: pointer;
+  margin-top: 5%;
 }
-form .button input:hover{
-  background: #12876f;
+form .button input:hover {
+  background: #ED2B5D;
 }
-.wrapper form .signup-link{
+
+.wrapper form .signup-link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px; /* Increased margin for more spacing */
   font-size: 17px;
 }
-.wrapper form .signup-link a{
+.wrapper form .signup-link a {
   color: #16a085;
   text-decoration: none;
 }
-form .signup-link a:hover{
+form .signup-link a:hover {
   text-decoration: underline;
 }
+
+
   </style>
   <body>
     <div class="container">
@@ -137,6 +141,5 @@ form .signup-link a:hover{
         </form>
       </div>
     </div>
-
   </body>
 </html>
