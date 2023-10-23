@@ -1,187 +1,164 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Registration Form</title> 
+    <title>Registration Form</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
   </head>
-    <style>
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  color: black;
-}
-body {
-  background: #151515;
-  overflow: hidden;
-}
-::selection {
-  background: rgba(26, 188, 156, 0.3);
-}
-.container {
-    max-width: 475px; /* Decreased the max-width by 5% */
-    padding: 0 19px; /* Decreased padding by 5% */
-    margin: 95px auto; /* Decreased margin by 5% for vertical alignment */
-  }     
-.wrapper {
-  width: 100%;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
-  transform: scale(1.5); /* Powiększenie formularza*/
-}
-.wrapper .title {
-  height: 90px;
-  background: #AF57FF;
-  border-radius: 5px 5px 0 0;
-  color: #151515;
-  font-size: 30px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.wrapper form {
-  padding: 30px 35px 35px 35px; /* Increased padding for more spacing */
-  background-color: #817E82;
-  color: #151515;
-  font-weight:bold;
-}
-form input: focus{
-background-color: #fff;
-color: #151515;
-}
-form input:valid{
-background-color: #BF47E6;
-}
-form input{
-float:right;
-background-color: #AF57FF;
-transition: background-color 0.3s;
-}
-form select{
-float:right;
-background-color: #AF57FF;
-transition: background-color 0.3s;
-}
-form select:hover{
-background-color: #BF47E6;
-}
-form select:valid{
-background-color: #BF47E6;
-}
-.wrapper form .row {
-  height: 45px;
-  margin-bottom: 20px; /* Increased margin for more spacing */
-  position: relative;
-}
-.wrapper form .row input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  padding-left: 60px;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-form .row input:focus {
-  border-color: #151515;
-  box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
-}
-form .row input::placeholder {
-  color: #151515;
-}
-.wrapper form .row i {
-  position: absolute;
-  width: 47px;
-  height: 100%;
-  color: #151515;
-  font-size: 18px;
-  background: #16a085;
-  border: 1px solid #16a085;
-  border-radius: 5px 0 0 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.wrapper form .pass {
-  margin: -8px 0 30px 0; /* Increased margin for more spacing */
-}
-.wrapper form .pass a {
-  color: #16a085;
-  font-size: 17px;
-  text-decoration: none;
-}
-.wrapper form .pass a:hover {
-  text-decoration: underline;
-}
-.wrapper form .button input {
-  color: #111;
-  font-size: 20px;
-  font-weight: 500;
-  padding-left: 0px;
-  border-color: #111;
-  background-color: #AF57FF;
-  cursor: pointer;
-  margin-top: 5%;
-}
-form .button input:hover {
-  background: #BF47E6;
-}
-
-.wrapper form .signup-link {
-  text-align: center;
-  margin-top: 25px; /* Increased margin for more spacing */
-  font-size: 17px;
-}
-.wrapper form .signup-link a {
-  color: #16a085;
-  text-decoration: none;
-}
-form .signup-link a:hover {
-  text-decoration: underline;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      color: black;
+    }
+    body {
+      background: #333; /* Dark gray background */
+      overflow: hidden;
+    }
+    ::selection {
+      background: rgba(26, 188, 156, 0.3);
+    }
+    .container {
+      max-width: 475px;
+      padding: 0 19px;
+      margin: 95px auto;
+    }
+    .wrapper {
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+    .wrapper .title {
+      height: 90px;
+      background: #AF57FF;
+      border-radius: 5px 5px 0 0;
+      color: #fff; /* White text color */
+      font-size: 36px; /* Increased font size */
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form {
+      padding: 30px 35px 35px 35px;
+      background-color: #817E82;
+      color: #151515;
+      font-weight: bold;
+    }
+    .wrapper form input[type="text"],
+    .wrapper form input[type="password"] {
+      background-color: #eee;
+      color: #333;
+      border: 2px solid #555;
+      border-radius: 8px;
+      width: 100%;
+      outline: none;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+    .wrapper form input:focus {
+      border-color: #151515;
+      box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
+    }
+    .wrapper form input::placeholder {
+      color: #151515;
+    }
+    .wrapper form .button input {
+      background-color: #FF5733;
+      color: #fff;
+      font-size: 24px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 5%;
+    }
+    .wrapper form .button input:hover {
+      background: #FFA933;
+    }
+    .wrapper form .row {
+      height: 45px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .wrapper form .row i {
+      position: absolute;
+      width: 47px;
+      height: 100%;
+      color: #151515;
+      font-size: 18px;
+      background: #16a085;
+      border: 1px solid #16a085;
+      border-radius: 5px 0 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form .pass {
+      margin: -8px 0 30px;
+    }
+    .wrapper form .pass a {
+      color: #16a085;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    .wrapper form .pass a:hover {
+      text-decoration: underline;
+    }
+    .wrapper form .signup-link {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 17px;
+    }
+    .wrapper form .signup-link a {
+      color: #16a085;
+      text-decoration: none;
+    }
+    .wrapper form .signup-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
   </style>
   <body>
     <div class="container">
       <div class="wrapper">
-        <div class="title" color="white"><span>Registration</span></div>
+        <div class="title"><span>Registration</span></div>
         <form action="zapisz_do_bazy.php" method="post">
-            <div class="form-group">
-                <label for="imie">Imię:</label>
-                <input type="text" class="form-control" name="imie" required>
-            </div>
-            <div class="form-group">
-                <label for="nazwisko">Nazwisko:</label>
-                <input type="text" class="form-control" name="nazwisko" required>
-            </div>
-            <div class="form-group">
-                <label for="login">Login:</label>
-                <input type="text" class="form-control" name="login" required>
-            </div>
-            <div class="form-group">
-                <label for="haslo">Hasło:</label>
-                <input type="password" class="form-control" name="haslo" required>
-            </div>
-            <div class="form-group">
-                <label for="numer_gatunku">Film Category:</label>
-                <select class="form-control" name="numer_gatunku">
-                    <option value="1">Horror</option>
-                    <option value="2">Romans</option>
-                    <option value="3">Akcja</option>
-                    <option value="4">Komedie</option>
-                    <option value="5">Tajemnica</option>
-                    <option value="7">Science Fiction</option>
-                </select>
-            </div>
-			<div class="row button">            
+          <div class="form-group">
+            <label for="imie">Imię:</label>
+            <input type="text" name="imie" required>
+          </div>
+          <div class="form-group">
+            <label for="nazwisko">Nazwisko:</label>
+            <input type="text" name="nazwisko" required>
+          </div>
+          <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="text" name="login" required>
+          </div>
+          <div class="form-group">
+            <label for="haslo">Hasło:</label>
+            <input type="password" name="haslo" required>
+          </div>
+          <div class="form-group">
+            <label for="numer_gatunku">Film Category:</label>
+            <select name="numer_gatunku">
+              <option value="1">Horror</option>
+              <option value="2">Romans</option>
+              <option value="3">Akcja</option>
+              <option value="4">Komedie</option>
+              <option value="5">Tajemnica</option>
+              <option value="7">Science Fiction</option>
+            </select>
+          </div>
+          <div class="row button">            
             <input type="submit" value="Sign up">
           </div>
         </form>
@@ -189,4 +166,3 @@ form .signup-link a:hover {
     </div>
   </body>
 </html>
-s
