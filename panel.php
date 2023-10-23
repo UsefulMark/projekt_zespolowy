@@ -4,128 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel użytkownika</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+      body {
+            background-color: #151515;
+        }
+        .container {
+            background-color: #AF57FF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .alert {
+            margin-top: 10px;
+        }
+        .list-group {
+            margin-top: 20px;
+        }
+</style>
 <body>
-    <h1>Panel użytkownika</h1>
-    <?php
-    session_start(); // Rozpocznij sesję (jeśli jeszcze nie rozpoczęta)
-
-    // Połącz się z bazą danych MSSQL
-    $serverName = "WIN-8PODA49PE73\\PANDORABASE"; // Adres serwera MSSQL
-    $connectionOptions = array(
-        "Database" => "Projekt", // Nazwa bazy danych
-        "Uid" => "sa", // Login użytkownika MSSQL
-        "PWD" => "zaq1@WSX" // Hasło użytkownika MSSQL
-    );
-    
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
-    
-    if (!$conn) {
-        die("Błąd połączenia z bazą danych: " . sqlsrv_errors());
-    }
-    
-    // Sprawdź, czy użytkownik jest zalogowany (sprawdzamy, czy istnieje zmienna sesyjna "login" i czy pole "logged" jest ustawione na "true")
-    if (isset($_SESSION['login'])) {
-        $login = $_SESSION['login'];
-    
-        // Sprawdź, czy pole "logged" jest ustawione na "true" w bazie danych
-        $sql_check_logged = "SELECT logged FROM users WHERE login = ?";
-        $params_check_logged = array($login);
-        $stmt_check_logged = sqlsrv_query($conn, $sql_check_logged, $params_check_logged);
-    
-        if ($stmt_check_logged === false) {
-            die(print_r(sqlsrv_errors(), true));
-        }
-    
-        $row_check_logged = sqlsrv_fetch_array($stmt_check_logged, SQLSRV_FETCH_ASSOC);
-    
-        if ($row_check_logged['logged'] === 'true') {
-            // Użytkownik jest zalogowany, kontynuuj wyświetlanie panelu
-            // ...
-        } else {
-            // Jeżeli pole "logged" jest ustawione na "false" lub nie istnieje, przekieruj na stronę wylogowania
-            echo "Nie jesteś zalogowany. Proszę zaloguj się ponownie.";
-            header("Location: wyloguj.php"); // Przekieruj na stronę wylogowania
-            exit();
-        }
-    }
-    
-    // Wczytaj dane filmów z pliku CSV
-    $lines = file('gatunek.csv'); // Zastąp 'gatunek.csv' ścieżką do twojego pliku CSV
-    $filmy = [];
-    
-    foreach ($lines as $line) {
-        $data = str_getcsv($line);
-        $tytul = $data[0];
-        $gatunek = $data[1];
-        $filmy[$gatunek][] = $tytul;
-    }
-    // Sprawdź, czy użytkownik jest zalogowany (sprawdzamy, czy istnieje zmienna sesyjna "login")
-    if (isset($_SESSION['login'])) {
-        // Połącz się z bazą danych MSSQL
-        $serverName = "WIN-8PODA49PE73\\PANDORABASE"; // Adres serwera MSSQL
-        $connectionOptions = array(
-            "Database" => "Projekt", // Nazwa bazy danych
-            "Uid" => "sa", // Login użytkownika MSSQL
-            "PWD" => "zaq1@WSX" // Hasło użytkownika MSSQL
-        );
-
-        $conn = sqlsrv_connect($serverName, $connectionOptions);
-
-        if (!$conn) {
-            die("Błąd połączenia z bazą danych: " . sqlsrv_errors());
-        }
-
-        // Pobierz numer gatunku z bazy danych na podstawie zalogowanego użytkownika
-        $login = $_SESSION['login'];
-
-        $sql_get_gatunku = "SELECT numer_gatunku FROM users WHERE login = ?";
-        $params_get_gatunku = array($login);
-        $stmt_get_gatunku = sqlsrv_query($conn, $sql_get_gatunku, $params_get_gatunku);
-
-        if ($stmt_get_gatunku === false) {
-            die(print_r(sqlsrv_errors(), true));
-        }
-
-        $row_get_gatunku = sqlsrv_fetch_array($stmt_get_gatunku, SQLSRV_FETCH_ASSOC);
-
-        $numerGatunku = $row_get_gatunku['numer_gatunku'];
-
-        // Wyświetl numer gatunku
-        echo "Numer gatunku: " . $numerGatunku;
-
-        echo "Login w sesji: " . $login;
-
-        // Pobierz filmy na podstawie numeru gatunku
-        if (isset($filmy[$numerGatunku])) {
-            $rekomendacje = array_rand(array_slice($filmy[$numerGatunku], 1), 3);
-        } else {
-            $rekomendacje = array(); // Jeśli numer gatunku jest niepoprawny, nie wyświetlaj rekomendacji
-        }
-
-        if (!empty($rekomendacje)) {
-            echo "<h3>Top 3 filmy w wybranym gatunku:</h3>";
-            echo "<ul>";
-            foreach ($rekomendacje as $filmIndex) {
-                echo "<li>" . $filmy[$numerGatunku][$filmIndex + 1] . "</li>";
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center">
+                <h1 class="display-4">Panel użytkownika</h1>
+            </div>
+            <?php
+            // Start a PHP session
+            session_start();
+            
+            // Your PHP code here
+            
+            // Check if the user is logged in
+            if (isset($_SESSION['login'])) {
+                $login = $_SESSION['login'];
+                
+                // Connect to the MSSQL database
+                $serverName = "WIN-8PODA49PE73\\PANDORABASE";
+                $connectionOptions = array(
+                    "Database" => "Projekt",
+                    "Uid" => "sa",
+                    "PWD" => "zaq1@WSX"
+                );
+                
+                $conn = sqlsrv_connect($serverName, $connectionOptions);
+                
+                if (!$conn) {
+                    die("Błąd połączenia z bazą danych: " . sqlsrv_errors());
+                }
+                
+                // Check if the user is logged in from the database
+                $sql_check_logged = "SELECT logged FROM users WHERE login = ?";
+                $params_check_logged = array($login);
+                $stmt_check_logged = sqlsrv_query($conn, $sql_check_logged, $params_check_logged);
+                
+                if ($stmt_check_logged === false) {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+                
+                $row_check_logged = sqlsrv_fetch_array($stmt_check_logged, SQLSRV_FETCH_ASSOC);
+                
+                if ($row_check_logged['logged'] === 'true') {
+                    // User is logged in, continue displaying the panel
+                    // ...
+                } else {
+                    // If the "logged" field is set to "false" or doesn't exist, redirect to the logout page
+                    echo "<div class='alert alert-danger'>Nie jesteś zalogowany. Proszę zaloguj się ponownie.</div>";
+                    header("Location: wyloguj.php");
+                    exit();
+                }
+                
+                // Load movie data from a CSV file
+                $lines = file('gatunek.csv');
+                $filmy = [];
+                
+                foreach ($lines as $line) {
+                    $data = str_getcsv($line);
+                    $tytul = $data[0];
+                    $gatunek = $data[1];
+                    $filmy[$gatunek][] = $tytul;
+                }
+                
+                // Get the user's genre number from the database
+                $sql_get_gatunku = "SELECT numer_gatunku FROM users WHERE login = ?";
+                $params_get_gatunku = array($login);
+                $stmt_get_gatunku = sqlsrv_query($conn, $sql_get_gatunku, $params_get_gatunku);
+                
+                if ($stmt_get_gatunku === false) {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+                
+                $row_get_gatunku = sqlsrv_fetch_array($stmt_get_gatunku, SQLSRV_FETCH_ASSOC);
+                $numerGatunku = $row_get_gatunku['numer_gatunku'];
+                
+                // Display genre number
+                echo "<div class='alert alert-info'>Numer gatunku: " . $numerGatunku . "</div>";
+                echo "<div class='alert alert-info'>Login w sesji: " . $login . "</div>";
+                
+                // Get movies based on the genre number
+                if (isset($filmy[$numerGatunku])) {
+                    $rekomendacje = array_rand(array_slice($filmy[$numerGatunku], 1), 3);
+                } else {
+                    $rekomendacje = array();
+                }
+                
+                if (!empty($rekomendacje)) {
+                    echo "<h3>Top 3 filmy w wybranym gatunku:</h3>";
+                    echo "<div class='list-group'>";
+                    foreach ($rekomendacje as $filmIndex) {
+                        $filmTytul = $filmy[$numerGatunku][$filmIndex + 1];
+                        $googleSearchLink = "https://www.google.com/search?q=" . urlencode($filmTytul);
+                
+                        echo "<a href='$googleSearchLink' class='list-group-item list-group-item-action' target='_blank'>$filmTytul</a>";
+                    }                    
+                    echo "</div>";
+                } else {
+                    echo "<p class='alert alert-info'>Niepoprawny numer gatunku.</p>";
+                }
+                
+                
+                // Logout button
+                echo "<div class='text-center'>
+                <form method='post' action='wyloguj.php' style='display: inline-block;'>
+                    <input type='submit' class='btn btn-danger' value='Wyloguj' style='margin-top: 10%; width: 200px;'>
+                </form>              
+                <form method='post' action='ml/mood.html' style='display: inline-block;'>
+                    <input src=''; type='submit' class='btn btn-danger' value='Predict' style='margin-top: 10%;  width: 200px;'>
+                </form>
+                </div>";
+                
+                // Close the database connection
+                sqlsrv_close($conn);
+            } else {
+                echo "<p class='alert alert-warning'>Nie jesteś zalogowany. Proszę zaloguj się.</p>";
+                // You can add a redirection to the login page here
             }
-            echo "</ul>";
-        } else {
-            echo "<p>Niepoprawny numer gatunku.</p>";
-        }
+            
+             ?>
+             
+        </div>
+        <div >
+<?php
+  // Sample viewing history
+  $viewingHistory = array(
+    "Film 1",
+    "Film 2",
+    "Film 3",
+    "Film 4",
+    "Film 5",
+);
 
-        // Przycisk wylogowania
-        echo "<form method='post' action='wyloguj.php'>
-              <input type='submit' value='Wyloguj'>
-              </form>";
-
-        // Zamykanie połączenia z bazą danych
-        sqlsrv_close($conn);
-    } else {
-        // Jeśli użytkownik nie jest zalogowany, przekieruj go na stronę logowania lub wyświetl odpowiedni komunikat
-        echo "Nie jesteś zalogowany. Proszę zaloguj się.";
-        // Możesz dodać przekierowanie na stronę logowania tutaj
-    }
-    ?>
+echo "<h3>Historia oglądania:</h3>";
+echo "<ul class=' text-center '>";
+foreach ($viewingHistory as $item) {
+    echo "<li class='text-center list-group-item list-group-item-action'>" . $item . '</li>';
+}
+echo '</ul>';
+?>
+</div>
+    </div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
