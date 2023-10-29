@@ -52,8 +52,10 @@ if ($stmt === false) {
 }
 
 // Utwórz tabelę dla użytkownika
-$sql_create_table = "CREATE TABLE $login (ocena INT, nazwa VARCHAR(255))";
+$sql_create_table = "CREATE TABLE $login (film_id INT IDENTITY(1,1) PRIMARY KEY, nazwa VARCHAR(255), ocena INT)
+";
 $stmt_create_table = sqlsrv_query($conn, $sql_create_table);
+
 
 if ($stmt_create_table === false) {
     die(print_r(sqlsrv_errors(), true));

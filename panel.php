@@ -116,9 +116,11 @@
                     foreach ($rekomendacje as $filmIndex) {
                         $filmTytul = $filmy[$numerGatunku][$filmIndex + 1];
                         $googleSearchLink = "https://www.google.com/search?q=" . urlencode($filmTytul);
-                
-                        echo "<a href='$googleSearchLink' class='list-group-item list-group-item-action' target='_blank'>$filmTytul</a>";
-                    }                    
+                        
+                        // Dodaj przycisk "Obejrzyj" dla każdego filmu
+                        echo "<a href='$googleSearchLink' class='list-group-item list-group-item-action' target='_blank'>$filmTytul
+                              <a href='watch.php?title=" . urlencode($filmTytul) . "' class='btn btn-success btn-sm float-right'>Obejrzyj</a></a>";
+                    }
                     echo "</div>";
                 } else {
                     echo "<p class='alert alert-info'>Niepoprawny numer gatunku.</p>";
