@@ -23,6 +23,13 @@
         .list-group {
             margin-top: 20px;
         }
+
+      
+.google-search {
+    cursor: pointer; /* Zmiana kształtu kursora na "pointer" po najechaniu */
+}
+
+
 </style>
 <body>
 <div class="container mt-5">
@@ -149,22 +156,64 @@
         </div>
         <div >
 <?php
-  // Sample viewing history
-  $viewingHistory = array(
-    "Film 1",
-    "Film 2",
-    "Film 3",
-    "Film 4",
-    "Film 5",
+//   // Sample viewing history
+//   $viewingHistory = array(
+//     "Film 1",
+//     "Film 2",
+//     "Film 3",
+//     "Film 4",
+//     "Film 5",
+// );
+
+// echo "<h3>Historia oglądania:</h3>";
+// echo "<ul class=' text-center '>";
+// foreach ($viewingHistory as $item) {
+//     echo "<li class='text-center list-group-item list-group-item-action'>" . $item . '</li>';
+// }
+// echo '</ul>';
+
+
+// Pobierz login użytkownika z sesji
+$login = $_SESSION['login'];
+
+// Połączenie z bazą danych MSSQL
+$serverName = "WIN-8PODA49PE73\\PANDORABASE";
+$connectionOptions = array(
+    "Database" => "Projekt",
+    "Uid" => "sa",
+    "PWD" => "zaq1@WSX"
 );
 
-echo "<h3>Historia oglądania:</h3>";
-echo "<ul class=' text-center '>";
-foreach ($viewingHistory as $item) {
-    echo "<li class='text-center list-group-item list-group-item-action'>" . $item . '</li>';
+$conn = sqlsrv_connect($serverName, $connectionOptions); // Używamy sqlsrv_connect do połączenia z bazą MSSQL
+
+if (!$conn) {
+    die("Błąd połączenia z bazą danych: " . print_r(sqlsrv_errors(), true));
 }
-echo '</ul>';
+
+// Zapytanie do bazy danych, aby pobrać historię oglądania użytkownika
+$sql = "SELECT nazwa FROM " . $login;
+$query = sqlsrv_query($conn, $sql);
+
+echo "<h3>Historia oglądania:</h3>";
+echo "<ul class='text-center'>";
+if ($query) {
+    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
+        $searchQuery = urlencode($row["nazwa"]);
+        $googleLink = "https://www.google.com/search?q=$searchQuery";
+        echo "<li class='text-center list-group-item list-group-item-action google-search' onclick=\"window.open('$googleLink', '_blank')\">" . $row["nazwa"] . "</li>";
+    }
+} else {
+    echo "<li class='text-center list-group-item list-group-item-action'>Brak historii oglądania.</li>";
+}
+
+
+
+
+sqlsrv_close($conn); // Zamykanie połączenia z bazą danych
 ?>
+
+
+
 </div>
     </div>
 </div>
