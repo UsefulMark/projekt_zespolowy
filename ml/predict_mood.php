@@ -126,53 +126,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="result-container">
                         <h2>Przewidziany nastrój: <?php echo $predicted; ?></h2>
                         <?php
-                        if ($predicted === 'smutny') {
-                            // Wyświetl trzy losowe filmy z gatunkiem 1 jako linki do wyników wyszukiwania w Google
-                            echo "Trzy losowe filmy z gatunkiem 1:<br>";
-                            $csv = array_map('str_getcsv', file('gatunek.csv'));
-                            $smutne_filmy = array();
-                            foreach ($csv as $row) {
-                                if ($row[1] === '1') {
-                                    $smutne_filmy[] = $row[0];
-                                }
-                            }
-                            $losowe_filmy = array_rand($smutne_filmy, 3);
-                            foreach ($losowe_filmy as $index) {
-                                $film = $smutne_filmy[$index];
-                                echo "<a href='https://www.google.com/search?q=" . urlencode($film) . "' target='_blank'>$film</a><br>";
-                            }
-                        } elseif ($predicted === 'szczęśliwy') {
-                            // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
-                            echo "Trzy losowe filmy z gatunkiem 2:<br>";
-                            $csv = array_map('str_getcsv', file('gatunek.csv'));
-                            $szczęśliwe_filmy = array();
-                            foreach ($csv as $row) {
-                                if ($row[1] === '2') {
-                                    $szczęśliwe_filmy[] = $row[0];
-                                }
-                            }
-                            $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
-                            foreach ($losowe_filmy as $index) {
-                                $film = $szczęśliwe_filmy[$index];
-                                echo "<a href='https://www.google.com/search?q=" . urlencode($film) . "' target='_blank'>$film</a><br>";
-                            }
-                        } elseif ($predicted === 'neutralny') {
-                            // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
-                            echo "Trzy losowe filmy z gatunkiem 3:<br>";
-                            $csv = array_map('str_getcsv', file('gatunek.csv'));
-                            $neutralne_filmy = array();
-                            foreach ($csv as $row) {
-                                if ($row[1] === '3') {
-                                    $neutralne_filmy[] = $row[0];
-                                }
-                            }
-                            $losowe_filmy = array_rand($neutralne_filmy, 3);
-                            foreach ($losowe_filmy as $index) {
-                                $film = $neutralne_filmy[$index];
-                                echo "<a href='https://www.google.com/search?q=" . urlencode($film) . "' target='_blank'>$film</a><br>";
-                            }
-                        }
-                        ?>
+if ($predicted === 'smutny') {
+    // Wyświetl trzy losowe filmy z gatunkiem 1 jako linki do wyników wyszukiwania w Google
+    echo "Trzy losowe filmy z gatunkiem 1:<br>";
+    $csv = array_map('str_getcsv', file('gatunek.csv'));
+    $smutne_filmy = array();
+    foreach ($csv as $row) {
+        if ($row[1] === '1') {
+            $smutne_filmy[] = $row[0];
+        }
+    }
+    $losowe_filmy = array_rand($smutne_filmy, 3);
+    foreach ($losowe_filmy as $index) {
+        $film = $smutne_filmy[$index];
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>"; // Dodaj przycisk "Obejrzyj" z tytułem filmu
+    }
+} elseif ($predicted === 'szczęśliwy') {
+    // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
+    echo "Trzy losowe filmy z gatunkiem 2:<br>";
+    $csv = array_map('str_getcsv', file('gatunek.csv'));
+    $szczęśliwe_filmy = array();
+    foreach ($csv as $row) {
+        if ($row[1] === '2') {
+            $szczęśliwe_filmy[] = $row[0];
+        }
+    }
+    $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
+    foreach ($losowe_filmy as $index) {
+        $film = $szczęśliwe_filmy[$index];
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>"; // Dodaj przycisk "Obejrzyj" z tytułem filmu
+    }
+} elseif ($predicted === 'neutralny') {
+    // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
+    echo "Trzy losowe filmy z gatunkiem 3:<br>";
+    $csv = array_map('str_getcsv', file('gatunek.csv'));
+    $neutralne_filmy = array();
+    foreach ($csv as $row) {
+        if ($row[1] === '3') {
+            $neutralne_filmy[] = $row[0];
+        }
+    }
+    $losowe_filmy = array_rand($neutralne_filmy, 3);
+    foreach ($losowe_filmy as $index) {
+        $film = $neutralne_filmy[$index];
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>"; // Dodaj przycisk "Obejrzyj" z tytułem filmu
+    }
+}
+?>
+
                         <a href="../subpages/userpanel.php"><button class="btn btn-success">OK</button></a>
                     </div>
                 <?php endif; ?>
