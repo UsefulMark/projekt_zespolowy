@@ -49,9 +49,23 @@
                             $errorMessages[] = $error['message'];
                         }
                         $errorMessage = implode(', ', $errorMessages);
-                    
+
                         echo "<p class='alert alert-danger'>Błąd podczas dodawania nazwy filmu do twojej tabeli użytkownika: $errorMessage</p>";
                     }
+
+                    // Formularz do oceny filmu
+               // Formularz do oceny filmu
+echo "
+<form method='post' action='ocena.php'>
+    <input type='hidden' name='filmTytul' value='$filmTytul'> <!-- Dodaj pole ukryte do przekazania tytułu -->
+    <div class='form-group'>
+        <label for='ocena'>Oceń film (0.0 - 5.0):</label>
+        <input type='number' step='0.5' min='0' max='5' name='ocena' id='ocena' required>
+    </div>
+    <input type='submit' class='btn btn-primary' value='Zapisz ocenę'>
+</form>
+";
+
 
                     // Zamknięcie połączenia z bazą danych
                     sqlsrv_close($conn);
