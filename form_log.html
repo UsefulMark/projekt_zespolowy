@@ -1,146 +1,117 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form | CodingLab</title>
+    <title>Login Form</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-  </head>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-      color: black;
-    }
-    body {
-      background: #333; /* Dark gray background */
-      overflow: hidden;
-    }
-    ::selection {
-      background: rgba(26, 188, 156, 0.3);
-    }
-    .container {
-      max-width: 475px;
-      padding: 0 19px;
-      margin: 95px auto;
-    }
-    .wrapper {
-      width: 100%;
-      background: #fff;
-      border-radius: 5px;
-      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
-      transform: scale(1);
-    }
-    .wrapper .title {
-      height: 90px;
-      background: #AF57FF;
-      border-radius: 5px 5px 0 0;
-      color: #fff; /* White text color */
-      font-size: 36px; /* Increased font size */
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .wrapper form {
-      padding: 30px 35px 35px 35px;
-      background-color: #817E82;
-      color: #151515;
-      font-weight: bold;
-    }
-    .wrapper form input[type="text"],
-    .wrapper form input[type="password"] {
-      background-color: #eee;
-      color: #333;
-      border: 2px solid #555;
-      border-radius: 8px;
-      width: 100%;
-      outline: none;
-      padding: 10px;
-      transition: all 0.3s ease;
-    }
-    .wrapper form input:focus {
-      border-color: #151515;
-      box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
-    }
-    .wrapper form input::placeholder {
-      color: #151515;
-    }
-    .wrapper form .button input {
-      background-color: #FF5733;
-      color: #fff;
-      font-size: 24px;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 5%;
-    }
-    .wrapper form .button input:hover {
-      background: #FFA933;
-    }
-    .wrapper form .row {
-      height: 45px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .wrapper form .row i {
-      position: absolute;
-      width: 47px;
-      height: 100%;
-      color: #151515;
-      font-size: 18px;
-      background: #16a085;
-      border: 1px solid #16a085;
-      border-radius: 5px 0 0 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .wrapper form .pass {
-      margin: -8px 0 30px;
-    }
-    .wrapper form .pass a {
-      color: #16a085;
-      font-size: 17px;
-      text-decoration: none;
-    }
-    .wrapper form .pass a:hover {
-      text-decoration: underline;
-    }
-    .wrapper form .signup-link {
-      text-align: center;
-      margin-top: 25px;
-      font-size: 17px;
-    }
-    .wrapper form .signup-link a {
-      color: #16a085;
-      text-decoration: none;
-    }
-    .wrapper form .signup-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-  <body>
-    <div class="container">
-      <div class="wrapper">
-        <div class="title"><span>Login</span></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #222; /* Dark gray background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+        .wrapper {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+        .wrapper .title {
+            color: #fff; /* White text color */
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .wrapper form {
+            background-color: transparent;
+        }
+        .wrapper form label {
+            font-size: 16px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+            color: #fff;
+        }
+        .wrapper form input[type="text"],
+        .wrapper form input[type="password"] {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-bottom: 2px solid #3498db;
+            width: 100%;
+            outline: none;
+            padding: 10px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .wrapper form .button input {
+            background-color: #3498db;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s;
+        }
+        .wrapper form .button input:hover {
+            background: #0b7dda;
+        }
+        .wrapper form .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+        .wrapper form .signup-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .wrapper form .signup-link a:hover {
+            text-decoration: none;
+        }
+        .signup-link{
+          text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <div class="title">Login</div>
         <form action="sprawdz_logowanie.php" method="post">
-          <label for="login">Login:</label>
-          <input type="text" name="login" required><br><br>
+            <label for="login">Login:</label>
+            <input type="text" name="login" required>
 
-          <label for="haslo">Hasło:</label>
-          <input type="password" name="haslo" required><br><br>
+            <label for="haslo">Hasło:</label>
+            <input type="password" name "haslo" required>
 
-          <div class="row button">
-            <input type="submit" value="Zaloguj">
-          </div>
-        </form>
-      </div>
+            <div class="row button">
+                <input type="submit" value="Zaloguj">
+            </div>
+        </form><br/>
+        <div class="signup-link">
+            Don't have an account? <a href="form_reg.html">Sign up</a>
+        </div>
     </div>
-  </body>
+</div>
+</body>
 </html>

@@ -14,10 +14,10 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      color: black;
+      color: white;
     }
     body {
-      background: #333; /* Dark gray background */
+      background: #222; /* Dark gray background */
       overflow: hidden;
     }
     ::selection {
@@ -37,7 +37,7 @@
     }
     .wrapper .title {
       height: 90px;
-      background: #AF57FF;
+      background: black;
       border-radius: 5px 5px 0 0;
       color: #fff; /* White text color */
       font-size: 36px; /* Increased font size */
@@ -48,20 +48,19 @@
     }
     .wrapper form {
       padding: 30px 35px 35px 35px;
-      background-color: #817E82;
-      color: #151515;
+      background-color: black;
+      color: white;
       font-weight: bold;
     }
     .wrapper form input[type="text"],
     .wrapper form input[type="password"] {
-      background-color: #eee;
-      color: #333;
-      border: 2px solid #555;
-      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
       width: 100%;
       outline: none;
       padding: 10px;
       transition: all 0.3s ease;
+      border-bottom: 2px solid #3498db;
     }
     .wrapper form input:focus {
       border-color: #151515;
@@ -71,7 +70,7 @@
       color: #151515;
     }
     .wrapper form .button input {
-      background-color: #FF5733;
+      background-color: #3498db;
       color: #fff;
       font-size: 24px;
       border: none;
@@ -79,6 +78,7 @@
       border-radius: 10px;
       cursor: pointer;
       margin-top: 5%;
+      display: block;
     }
     .wrapper form .button input:hover {
       background: #FFA933;
