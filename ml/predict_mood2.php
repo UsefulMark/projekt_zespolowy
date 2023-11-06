@@ -139,7 +139,7 @@ if ($predicted === 'smutny') {
     $losowe_filmy = array_rand($smutne_filmy, 3);
     foreach ($losowe_filmy as $index) {
         $film = $smutne_filmy[$index];
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>"; // Dodaj przycisk "Obejrzyj" z tytułem filmu
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film); // Dodaj przycisk "Obejrzyj" z tytułem filmu
     }
 } elseif ($predicted === 'szczęśliwy') {
     // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
@@ -154,7 +154,7 @@ if ($predicted === 'smutny') {
     $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
     foreach ($losowe_filmy as $index) {
         $film = $szczęśliwe_filmy[$index];
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>"; // Dodaj przycisk "Obejrzyj" z tytułem filmu
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film); // Dodaj przycisk "Obejrzyj" z tytułem filmu
     }
 } elseif ($predicted === 'neutralny') {
     // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
@@ -169,12 +169,12 @@ if ($predicted === 'smutny') {
     $losowe_filmy = array_rand($neutralne_filmy, 3);
     foreach ($losowe_filmy as $index) {
         $film = $neutralne_filmy[$index];
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>"; // Dodaj przycisk "Obejrzyj" z tytułem filmu
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film); // Dodaj przycisk "Obejrzyj" z tytułem filmu
     }
 }
 ?>
 
-                        <a href="../panel.php"><button class="btn btn-success">OK</button></a>
+                        <a href="../index.html"><button class="btn btn-success">OK</button></a>
                     </div>
                 <?php endif; ?>
             </div>
