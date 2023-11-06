@@ -19,8 +19,9 @@ $nazwisko = $_POST['nazwisko'];
 $login = $_POST['login'];
 $haslo = $_POST['haslo'];
 $numer_gatunku = $_POST['numer_gatunku']; // Dodano pobieranie numeru gatunku
+$przypomnij = $_POST['przypomnij']; // Dodano pole przypomnij
 
-if (empty($imie) || empty($nazwisko) || empty($login) || empty($haslo) || empty($numer_gatunku)) {
+if (empty($imie) || empty($nazwisko) || empty($login) || empty($haslo) || empty($numer_gatunku) || empty($przypomnij)) {
     // Wyświetl komunikat o brakujących danych
     echo '<script>alert("Wszystkie pola formularza są obowiązkowe. Proszę wypełnić formularz.");</script>';
     echo '<script>history.back();</script>'; // Powrót do poprzedniej strony
@@ -36,8 +37,8 @@ if (strlen($imie) < 3 || strlen($nazwisko) < 3) {
     exit();
 }
 
-if (strlen($login) < 8) {
-    echo '<script>alert("Login musi mieć co najmniej 8 znaków.");</script>';
+if (strlen($login) < 5) {
+    echo '<script>alert("Login musi mieć co najmniej 5 znaków.");</script>';
     echo '<script>history.back();</script>';
     exit();
 }
@@ -77,8 +78,8 @@ if ($row['count'] > 0) {
 // Użytkownik o podanym loginie nie istnieje, można dokonać rejestracji
 
 // Wprowadzenie danych do bazy danych
-$sql = "INSERT INTO users (imie, nazwisko, login, haslo, numer_gatunku) VALUES (?, ?, ?, ?, ?)"; // Dodano "numer_gatunku" do zapytania
-$params = array($imie, $nazwisko, $login, $haslo, $numer_gatunku); // Dodano $numer_gatunku do tablicy $params
+$sql = "INSERT INTO users (imie, nazwisko, login, haslo, numer_gatunku, przypomnij) VALUES (?, ?, ?, ?, ?, ?)"; // Dodano "przypomnij" do zapytania
+$params = array($imie, $nazwisko, $login, $haslo, $numer_gatunku, $przypomnij); // Dodano $przypomnij do tablicy $params
 $stmt = sqlsrv_query($conn, $sql, $params);
 
 if ($stmt === false) {
@@ -100,5 +101,5 @@ echo '<script>alert("Zarejestrowano użytkownika: ' . $login . '");</script>';
 sqlsrv_close($conn);
 
 // Przekierowanie na stronę "index.html" po 3 sekundach
-echo '<script>window.setTimeout(function() { window.location = "index.html"; }, 3000);</script>'; // Poprawiono czas opóźnienia
+echo '<script>window.setTimeout(function() { window.location = "index.html"; }, 100);</script>'; // Poprawiono czas opóźnienia
 ?>

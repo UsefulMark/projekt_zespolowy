@@ -94,25 +94,33 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="wrapper">
-        <div class="title">Login</div>
-        <form action="sprawdz_logowanie.php" method="post">
-            <label for="login">Login:</label>
-            <input type="text" name="login" required>
+    <div class="container">
+        <div class="wrapper">
+            <div class="title">Login</div>
+            <form action="sprawdz_logowanie.php" method="post">
+                <label for="login">Login:</label>
+                <input type="text" name="login" required>
 
-            <label for="haslo">Hasło:</label>
-            <input type="password" name="haslo" required>
+                <label for="haslo">Hasło:</label>
+                <input type="password" name="haslo" required>
 
-            <div class="row button">
-                <input type="submit" value="Zaloguj">
+                <div class="row button">
+                    <input type="submit" value="Zaloguj">
+                </div>
+            </form><br/>
+
+            <!-- Dodaj link do przypomnienia hasła -->
+            <div class="password-reset-link">
+              Forget a password ? JUST REMEBER THIS NEXT TIME LoL<a href="resepaswlor.php">Forget a password ? JUST REMEBER THIS NEXT TIME LoL</a>
+
             </div>
-        </form><br/>
-        <div class="signup-link">
-            Don't have an account? <a href="form_reg.html">Sign up</a>
+
+            <div class="signup-link">
+                Don't have an account? <a href="form_reg.html">Sign up</a>
+            </div>
         </div>
     </div>
-</div>
 </body>
+
 
 </html>
