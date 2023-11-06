@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #222; /* Dark gray background */
+      overflow: hidden;
+    }
+    ::selection {
+      background: rgba(26, 188, 156, 0.3);
+    }
+    .container {
+      max-width: 1200px;
+      padding: 0 19px;
+      margin: 95px auto;
+    }
+    .wrapper {
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+    .wrapper .title {
+      height: 90px;
+      background: black;
+      border-radius: 5px 5px 0 0;
+      color: #fff; /* White text color */
+      font-size: 36px; /* Increased font size */
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form {
+      padding: 30px 35px 35px 35px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      display: flex; /* Make the form flex container */
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+      justify-content: space-between; /* Distribute items evenly */
+    }
+    .wrapper form .form-group {
+      flex-basis: 48%; /* Set the width for form-group divs */
+      margin-bottom: 20px;
+    }
+    .wrapper form .row.button {
+      flex-basis: 100%; /* Full width for buttons */
+      display: flex;
+      justify-content: center; /* Center the buttons */
+    }
+    .wrapper form .row.button input {
+      margin: 0 10px; /* Add spacing between buttons */
+    }
+    .wrapper form input[type="submit"] {
+      background-color: #3498db;
+      color: #fff;
+      font-size: 24px;
+      border: none;
+      padding: 0px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .wrapper form input[type="submit"]:hover {
+      background: #FFA933;
+    }
+    .wrapper form .row {
+      height: 45px;
+      position: relative;
+    }
+    .wrapper form .row i {
+      position: absolute;
+      width: 47px;
+      height: 100%;
+      color: #151515;
+      font-size: 18px;
+      background: #16a085;
+      border: 1px solid #16a085;
+      border-radius: 5px 0 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form .pass {
+      margin: -8px 0 30px;
+    }
+    .wrapper form .pass a {
+      color: #16a085;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    .wrapper form .pass a:hover {
+      text-decoration: underline;
+    }
+    .wrapper form .signup-link {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 17px;
+    }
+    .wrapper form .signup-link a {
+      color: #16a085;
+      text-decoration: none;
+    }
+    .wrapper form .signup-link a:hover {
+      text-decoration: underline;
+    }
+    .form-group {
+      width: 48%; /* Adjusted width for form groups */
+    }
+    .historia {
+      float: right; /* Move "Historia oglądania" div to the right */
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Panel użytkownika</span></div>
+        <form action="to nie formularz" method="post">
+          <div class="form-group">
+            <label for="top">Top 3 filmy w wybranym gatunku:</label>
+            <div>
+                <!-- PHP code for top 3 films -->
+            </div>
+          </div>
+          <div class="form-group historia"> <!-- Added historia class here -->
+            <label for="his">Historia oglądania:</label>
+            <div>
+                <!-- PHP code for viewing history -->
+            </div>
+          </div>
+          <div class="row button">            
+            <input type="submit" value="Wyloguj">
+            <div style="margin-top: 10px;"></div> <!-- Add spacing between buttons -->
+            <input type="submit" value="Predict">
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
