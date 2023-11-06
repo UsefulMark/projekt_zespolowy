@@ -34,38 +34,46 @@
                         die("Błąd połączenia z bazą danych: " . sqlsrv_errors());
                     }
 
-                    // Wstawienie nazwy filmu do tabeli użytkownika
-                    $sqlInsert = "INSERT INTO $login (nazwa, ocena) VALUES (?, 0)";
-                    $paramsInsert = array($filmTytul);
+                    // Sprawdzenie, czy film już istnieje w bazie użytkownika
+                    $sqlCheck = "SELECT COUNT(*) AS Count FROM $login WHERE nazwa = ?";
+                    $paramsCheck = array($filmTytul);
+                    $stmtCheck = sqlsrv_query($conn, $sqlCheck, $paramsCheck);
+                    $row = sqlsrv_fetch_array($stmtCheck);
 
-                    $stmtInsert = sqlsrv_query($conn, $sqlInsert, $paramsInsert);
-
-                    if ($stmtInsert) {
-                        echo "Nazwa filmu została dodana do twojej tabeli użytkownika.";
+                    if ($row['Count'] > 0) {
+                        echo "Film o nazwie '$filmTytul' jest już w twojej tabeli użytkownika.";
                     } else {
-                        $errors = sqlsrv_errors();
-                        $errorMessages = array();
-                        foreach ($errors as $error) {
-                            $errorMessages[] = $error['message'];
-                        }
-                        $errorMessage = implode(', ', $errorMessages);
+                        // Wstawienie nazwy filmu do tabeli użytkownika
+                        $sqlInsert = "INSERT INTO $login (nazwa, ocena) VALUES (?, 0)";
+                        $paramsInsert = array($filmTytul);
 
-                        echo "<p class='alert alert-danger'>Błąd podczas dodawania nazwy filmu do twojej tabeli użytkownika: $errorMessage</p>";
+                        $stmtInsert = sqlsrv_query($conn, $sqlInsert, $paramsInsert);
+
+                        if ($stmtInsert) {
+                            echo "Nazwa filmu została dodana do twojej tabeli użytkownika.";
+                        } else {
+                            $errors = sqlsrv_errors();
+                            $errorMessages = array();
+                            foreach ($errors as $error) {
+                                $errorMessages[] = $error['message'];
+                            }
+                            $errorMessage = implode(', ', $errorMessages);
+
+                            echo "<p class='alert alert-danger'>Błąd podczas dodawania nazwy filmu do twojej tabeli użytkownika: $errorMessage</p>";
+                        }
                     }
 
                     // Formularz do oceny filmu
-               // Formularz do oceny filmu
-echo "
-<form method='post' action='ocena.php'>
-    <input type='hidden' name='filmTytul' value='$filmTytul'> <!-- Dodaj pole ukryte do przekazania tytułu -->
-    <div class='form-group'>
-        <label for='ocena'>Oceń film (0.0 - 5.0):</label>
-        <input type='number' step='0.5' min='0' max='5' name='ocena' id='ocena' required>
-    </div>
-    <input type='submit' class='btn btn-primary' value='Zapisz ocenę'>
-</form>
-";
-
+                    echo "
+                    <form method='post' action='ocena.php'>
+                        <input type='hidden' name='filmTytul' value='$filmTytul'> <!-- Dodaj pole ukryte do przekazania tytułu -->
+                        <div class='form-group'>
+                            <label for='ocena'>Oceń film (0.0 - 5.0):</label>
+                            <input type='number' step='0.5' min='0' max='5' name='ocena' id='ocena' required>
+                        </div>
+                        <input type='submit' class='btn btn-primary' value='Zapisz ocenę'>
+                    </form>
+                    ";
 
                     // Zamknięcie połączenia z bazą danych
                     sqlsrv_close($conn);
