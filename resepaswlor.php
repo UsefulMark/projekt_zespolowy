@@ -9,6 +9,8 @@
     <form method="post" action="">
         <label for="login">Podaj login:</label>
         <input type="text" name="login" required>
+        <label for="przypomnij">Twoje przezwisko (do odzyskania hasła):</label>
+        <input type="text" name="przypomnij" required>
         <label for="new_password">Nowe hasło:</label>
         <input type="password" name="new_password" required>
         <input type="submit" value="Zmień hasło">
@@ -30,23 +32,39 @@
         }
 
         $login = $_POST["login"];
+        $przypomnij = $_POST["przypomnij"];
         $new_password = $_POST["new_password"];
 
-        // Zapytanie do bazy danych w celu aktualizacji hasła użytkownika
-        $sql = "UPDATE users SET haslo = ? WHERE login = ?";
-        $params = array($new_password, $login);
-        $stmt = sqlsrv_query($conn, $sql, $params);
+        // Sprawdzenie, czy podane dane (login i przypomnij) są poprawne
+        $sql_check = "SELECT COUNT(*) as count FROM users WHERE login = ? AND przypomnij = ?";
+        $params_check = array($login, $przypomnij);
+        $stmt_check = sqlsrv_query($conn, $sql_check, $params_check);
 
-        if ($stmt === false) {
+        if ($stmt_check === false) {
             die(print_r(sqlsrv_errors(), true));
         }
 
-        $rows_affected = sqlsrv_rows_affected($stmt);
+        $row = sqlsrv_fetch_array($stmt_check, SQLSRV_FETCH_ASSOC);
 
-        if ($rows_affected > 0) {
-            echo "Hasło użytkownika zostało zaktualizowane.";
+        if ($row['count'] > 0) {
+            // Zapytanie do bazy danych w celu aktualizacji hasła użytkownika
+            $sql_update = "UPDATE users SET haslo = ? WHERE login = ?";
+            $params_update = array($new_password, $login);
+            $stmt_update = sqlsrv_query($conn, $sql_update, $params_update);
+
+            if ($stmt_update === false) {
+                die(print_r(sqlsrv_errors(), true));
+            }
+
+            $rows_affected = sqlsrv_rows_affected($stmt_update);
+
+            if ($rows_affected > 0) {
+                echo "Hasło użytkownika zostało zaktualizowane.";
+            } else {
+                echo "Użytkownik o podanym loginie nie istnieje.";
+            }
         } else {
-            echo "Użytkownik o podanym loginie nie istnieje.";
+            echo "Podane dane są nieprawidłowe. Sprawdź login i przypomnienie hasła.";
         }
 
         // Zamykanie połączenia z bazą danych
