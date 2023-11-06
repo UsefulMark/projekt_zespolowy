@@ -13,12 +13,21 @@ if (!$conn) {
     die("Błąd połączenia z bazą danych: " . sqlsrv_errors());
 }
 
-// Pobieranie danych z formularza
+// Pobieranie danych z formularza i walidacja
 $imie = $_POST['imie'];
 $nazwisko = $_POST['nazwisko'];
 $login = $_POST['login'];
 $haslo = $_POST['haslo'];
 $numer_gatunku = $_POST['numer_gatunku']; // Dodano pobieranie numeru gatunku
+
+if (empty($imie) || empty($nazwisko) || empty($login) || empty($haslo) || empty($numer_gatunku)) {
+    // Wyświetl komunikat o brakujących danych
+    echo '<script>alert("Wszystkie pola formularza są obowiązkowe. Proszę wypełnić formularz.");</script>';
+    echo '<script>history.back();</script>'; // Powrót do poprzedniej strony
+
+    // Zakończ skrypt
+    exit();
+}
 
 // Sprawdzenie, czy użytkownik o podanym loginie już istnieje
 $sql_check = "SELECT COUNT(*) as count FROM users WHERE login = ?";
@@ -52,10 +61,8 @@ if ($stmt === false) {
 }
 
 // Utwórz tabelę dla użytkownika
-$sql_create_table = "CREATE TABLE $login (film_id INT IDENTITY(1,1) PRIMARY KEY, nazwa VARCHAR(255), ocena INT,gatunek INT)
-";
+$sql_create_table = "CREATE TABLE $login (film_id INT IDENTITY(1,1) PRIMARY KEY, nazwa VARCHAR(255), ocena INT, gatunek INT)";
 $stmt_create_table = sqlsrv_query($conn, $sql_create_table);
-
 
 if ($stmt_create_table === false) {
     die(print_r(sqlsrv_errors(), true));
