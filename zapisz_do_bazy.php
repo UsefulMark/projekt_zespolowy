@@ -29,6 +29,31 @@ if (empty($imie) || empty($nazwisko) || empty($login) || empty($haslo) || empty(
     exit();
 }
 
+// Dodatkowa walidacja
+if (strlen($imie) < 3 || strlen($nazwisko) < 3) {
+    echo '<script>alert("Imię i nazwisko muszą mieć co najmniej 3 znaki.");</script>';
+    echo '<script>history.back();</script>';
+    exit();
+}
+
+if (strlen($login) < 8) {
+    echo '<script>alert("Login musi mieć co najmniej 8 znaków.");</script>';
+    echo '<script>history.back();</script>';
+    exit();
+}
+
+if (strlen($haslo) < 5 || !preg_match('/[A-Z]/', $haslo) || !preg_match('/\d/', $haslo) || !preg_match('/[^A-Za-z0-9]/', $haslo)) {
+    echo '<script>alert("Hasło musi mieć co najmniej 10 znaków, zawierać co najmniej jedną dużą literę, jedną cyfrę i jeden znak specjalny.");</script>';
+    echo '<script>history.back();</script>';
+    exit();
+}
+
+if (empty($numer_gatunku)) {
+    echo '<script>alert("Proszę wybrać numer gatunku.");</script>';
+    echo '<script>history.back();</script>';
+    exit();
+}
+
 // Sprawdzenie, czy użytkownik o podanym loginie już istnieje
 $sql_check = "SELECT COUNT(*) as count FROM users WHERE login = ?";
 $params_check = array($login);
@@ -51,6 +76,8 @@ if ($row['count'] > 0) {
 
 // Użytkownik o podanym loginie nie istnieje, można dokonać rejestracji
 
+// Haszowanie hasła
+$haslo_hashed = password_hash($haslo, PASSWORD_DEFAULT);
 // Wprowadzenie danych do bazy danych
 $sql = "INSERT INTO users (imie, nazwisko, login, haslo, numer_gatunku) VALUES (?, ?, ?, ?, ?)"; // Dodano "numer_gatunku" do zapytania
 $params = array($imie, $nazwisko, $login, $haslo, $numer_gatunku); // Dodano $numer_gatunku do tablicy $params
@@ -75,5 +102,5 @@ echo '<script>alert("Zarejestrowano użytkownika: ' . $login . '");</script>';
 sqlsrv_close($conn);
 
 // Przekierowanie na stronę "index.html" po 3 sekundach
-echo '<script>window.setTimeout(function() { window.location = "index.html"; }, 3000);</script>'; // Poprawiono czas opóźnienia
+echo '<script>window.setTimeout(function() { window.location = "index.html"; }, 100);</script>'; // Poprawiono czas opóźnienia
 ?>
