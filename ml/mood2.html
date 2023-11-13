@@ -27,13 +27,9 @@
       padding: 0 19px;
       margin: 95px auto;
     }
-    .wrapper {
-      width: 100%;
-      background: #fff;
-      border-radius: 5px;
-      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
-      transform: scale(1);
-    }
+	.row{
+		display:block;
+	}
     .wrapper .title {
       height: 90px;
       background: black;
@@ -125,6 +121,15 @@
     .wrapper form .signup-link a:hover {
       text-decoration: underline;
     }
+	label{
+		float:left;
+	}
+	.form-label{
+		margin-bottom: 0.1rem;
+	}
+	.form-group{
+		margin-bottom: .4rem;
+	}
 </style>
 <body style="color: #FFF9CF;">
     <div class="container text-center">
@@ -133,24 +138,39 @@
             <div class="col-10">
                 <div class="title"><span>Mood prediction</span></div>
                 <form method="post" action="predict_mood2.php">
-                    <div class="mb-2">
+                    <div class="form-group">
                         <label for="ilość_snu" class="form-label">Amount of sleep (in hours):</label>
-                        <input type="text" name="ilość_snu" class="form-control">
+						<input type="text" name="ilość_snu" class="form-control">
                     </div>
 
-                    <div class="mb-2">
-                        <label for="ilość_aktywności" class="form-label">Number of activities:</label>
+                    <div class="form-group">
+                        <label for="ilość_aktywności" class="form-label">Number of life activities:</label>
                         <input type="text" name="ilość_aktywności" class="form-control">
                     </div>
 
-                    <div class="mb-2">
-                        <label for="poziom_stresu" class="form-label">Stress level (0, 1 or 3):</label>
-                        <input type="text" name="poziom_stresu" class="form-control">
+                    <div class="form-group">
+                        <label for="poziom_stresu" class="form-label">Stress lvl:</label>
+                        <select name="poziom_stresu" >
+							<option value="999" hidden></option>
+							<option value=0>Brak stresu</option>
+							<option value=1>Lekki stresik</option>
+							<option value=2>Poddenerowanie</option>
+							<option value=3>dSufhWfdShu</option>
+						</select>	
+                        <!--<input type="text" name="poziom_stresu" class="form-control">-->
                     </div>
 
-                    <div class="mb-2">
-                        <label for="samopoczucie" class="form-label">Well-being level (1-5):</label>
-                        <input type="text" name="samopoczucie" class="form-control">
+                    <div class="form-group">
+                      <label for="samopoczucie" class="form-label">Well-being:</label>
+                      <select name="samopoczucie">
+							<option value="999" hidden></option>
+							<option value="1">Złe</option>
+							<option value="2">Ponure</option>
+							<option value="3">Przeciętne</option>
+							<option value="4">Dobre</option>
+							<option value="5">Doskonałe</option>
+						</select>
+                        <!--<input type="text" name="samopoczucie" class="form-control">-->
                     </div>
 					<div class="row button">
 						<center><input type="submit" value="Prediction" class="btn btn-primary"></center>

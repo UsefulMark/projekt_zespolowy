@@ -139,17 +139,18 @@ if ($predicted === 'smutny') {
     $losowe_filmy = array_rand($smutne_filmy, 3);
     foreach ($losowe_filmy as $index) {
         $film = $smutne_filmy[$index];
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film); // Dodaj przycisk "Obejrzyj" z tytułem filmu
+        $searchQuery = urlencode("$film");
+        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
     }
 } elseif ($predicted === 'szczęśliwy') {
     // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
     echo "Trzy losowe filmy z gatunkiem 2:<br>";
     $csv = array_map('str_getcsv', file('gatunek.csv'));
     $szczęśliwe_filmy = array();
-    foreach ($csv as $row) {
-        if ($row[1] === '2') {
-            $szczęśliwe_filmy[] = $row[0];
-        }
+    foreach ($losowe_filmy as $index) {
+        $film = $smutne_filmy[$index];
+        $searchQuery = urlencode("$film");
+        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
     }
     $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
     foreach ($losowe_filmy as $index) {
@@ -161,10 +162,10 @@ if ($predicted === 'smutny') {
     echo "Trzy losowe filmy z gatunkiem 3:<br>";
     $csv = array_map('str_getcsv', file('gatunek.csv'));
     $neutralne_filmy = array();
-    foreach ($csv as $row) {
-        if ($row[1] === '3') {
-            $neutralne_filmy[] = $row[0];
-        }
+    foreach ($losowe_filmy as $index) {
+        $film = $smutne_filmy[$index];
+        $searchQuery = urlencode("$film");
+        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
     }
     $losowe_filmy = array_rand($neutralne_filmy, 3);
     foreach ($losowe_filmy as $index) {

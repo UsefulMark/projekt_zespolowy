@@ -275,39 +275,42 @@
                 // }
                 // echo '</ul>';
 
-                // Pobierz login użytkownika z sesji
-                $login = $_SESSION['login'];
+                   // Pobierz login użytkownika z sesji
+    $login = $_SESSION['login'];
 
-                // Połączenie z bazą danych MSSQL
-                $serverName = "WIN-8PODA49PE73\\PANDORABASE";
-                $connectionOptions = array(
-                    "Database" => "Projekt",
-                    "Uid" => "sa",
-                    "PWD" => "zaq1@WSX"
-                );
+    // Połączenie z bazą danych MSSQL
+    $serverName = "WIN-8PODA49PE73\\PANDORABASE";
+    $connectionOptions = array(
+        "Database" => "Projekt",
+        "Uid" => "sa",
+        "PWD" => "zaq1@WSX"
+    );
 
-                $conn = sqlsrv_connect($serverName, $connectionOptions); // Używamy sqlsrv_connect do połączenia z bazą MSSQL
+    $conn = sqlsrv_connect($serverName, $connectionOptions);
 
-                if (!$conn) {
-                    die("Błąd połączenia z bazą danych: " . print_r(sqlsrv_errors(), true));
-                }
+    if (!$conn) {
+        die("Błąd połączenia z bazą danych: " . print_r(sqlsrv_errors(), true));
+    }
 
-                // Zapytanie do bazy danych, aby pobrać historię oglądania użytkownika
-                $sql = "SELECT nazwa FROM " . $login;
-                $query = sqlsrv_query($conn, $sql);
+    // Zapytanie do bazy danych, aby pobrać historię oglądania użytkownika
+    $sql = "SELECT TOP 8 nazwa FROM " . $login ;
+    $query = sqlsrv_query($conn, $sql);
 
-                echo "<h3 style='color: white;'>Historia oglądania:</h3>";
+    echo "<h3 style='color: white;'>Historia oglądania:</h3>";
 
-                echo "<ul class='text-center'>";
-                if ($query) {
-                    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
-                        $searchQuery = urlencode($row["nazwa"]);
-                        $googleLink = "https://www.google.com/search?q=$searchQuery";
-                        echo "<li class='text-center list-group-item list-group-item-action google-search' style='cursor: pointer;' onclick=\"window.open('$googleLink', '_blank')\">" . $row["nazwa"] . "</li>";
-                    }
-                } else {
-                    echo "<li class='text-center list-group-item list-group-item-action'>Brak historii oglądania.</li>";
-                }
+    echo "<ul class='text-center list-group'>";
+    if ($query) {
+        while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
+            $searchQuery = urlencode($row["nazwa"]);
+            $googleLink = "https://www.google.com/search?q=$searchQuery";
+            echo "<li class='list-group-item list-group-item-action' style='cursor: pointer;' onclick=\"window.open('$googleLink', '_blank')\">" . $row["nazwa"] . "</li>";
+        }
+
+        // Dodaj link "Show More" do strony history.php
+        echo "<li class='list-group-item list-group-item-action'><a href='history.php'>Show More</a></li>";
+    } else {
+        echo "<li class='list-group-item list-group-item-action'>Brak historii oglądania.</li>";
+    }
 
                 sqlsrv_close($conn); // Zamykanie połączenia z bazą danych
                 ?>
