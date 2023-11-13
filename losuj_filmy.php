@@ -18,6 +18,13 @@
             background: #333;
             color: white;
             margin-top: 10px;
+            position: relative;
+        }
+        .btn-group {
+            display: flex;
+        }
+        .search-btn {
+            margin-left: 5px;
         }
     </style>
 </head>
@@ -62,7 +69,10 @@
                             foreach ($losowaneFilmy as $index) {
                                 $filmTytul = $filmy[$index];
                                 echo "<li class='list-group-item'>$filmTytul";
-                                echo " <a href='watch.php?title=" . urlencode($filmTytul) . "' class='btn btn-secondary btn-sm'>Obejrzyj</a></li>";
+                                echo "<div class='btn-group'>";
+                                echo " <button class='btn btn-secondary btn-sm' onclick='watchFilm(\"$filmTytul\")'>Obejrzyj</button>";
+                                echo " <button class='btn btn-info btn-sm search-btn' onclick='searchOnGoogle(\"$filmTytul\")'>Wyszukaj</button>";
+                                echo "</div></li>";
                             }
 
                             echo "</ul>";
@@ -100,8 +110,48 @@
                         echo "<p>Nie wybrano gatunku filmu.</p>";
                     }
                 ?>
+
+                <h2 class="mt-4">Koło Fortuny</h2>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <input type="submit" class="btn btn-warning mt-2" value="Losuj film z Koła Fortuny" name="losujKoloFortuny">
+                </form>
+
+                <?php
+                    if (isset($_POST['losujKoloFortuny'])) {
+                        $linesKoloFortuny = file('gatunek.csv');
+                        $filmyKoloFortuny = [];
+
+                        foreach ($linesKoloFortuny as $line) {
+                            $dataKoloFortuny = str_getcsv($line);
+                            $tytulKoloFortuny = $dataKoloFortuny[0];
+                            $filmyKoloFortuny[] = $tytulKoloFortuny;
+                        }
+
+                        if (!empty($filmyKoloFortuny)) {
+                            $losowanyFilmKoloFortuny = $filmyKoloFortuny[array_rand($filmyKoloFortuny)];
+                            echo "<p class='text-white mt-2'>Wylosowany film z Koła Fortuny: $losowanyFilmKoloFortuny</p>";
+                            echo "<div class='btn-group'>";
+                            echo "<a href='watch.php?title=" . urlencode($losowanyFilmKoloFortuny) . "' class='btn btn-secondary btn-sm'>Obejrzyj</a>";
+                            echo " <button class='btn btn-info btn-sm search-btn' onclick='searchOnGoogle(\"$losowanyFilmKoloFortuny\")'>Wyszukaj</button>";
+                            echo "</div>";
+                        } else {
+                            echo "<p class='text-white mt-2'>Brak filmów na Kole Fortuny.</p>";
+                        }
+                    }
+                ?>
             </div>
         </div>
     </div>
+    
+    <script>
+        function searchOnGoogle(title) {
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(title)}`;
+            window.open(searchUrl, '_blank');
+        }
+
+        function watchFilm(title) {
+            window.location.href = `watch.php?title=${encodeURIComponent(title)}`;
+        }
+    </script>
 </body>
 </html>
