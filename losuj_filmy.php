@@ -29,11 +29,12 @@
                 <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <label for="gatunek">Wybierz gatunek:</label>
                     <select id="gatunek" name="gatunek">
+                        <option value="999" hidden></option>
                         <option value="1">Horror</option>
                         <option value="2">Romans</option>
                         <option value="3">Akcja</option>
                         <option value="4">Komedia</option>
-                        <option value="5">Tajemnica</option>
+                        <option value="5">Dreszczowiec</option>
                         <option value="7">Sci-Fi</option>
                         <!-- Dodaj tu pozostałe opcje z innymi gatunkami -->
                     </select>
@@ -55,12 +56,43 @@
                         }
 
                         if (!empty($filmy)) {
-                            $losowaneFilmy = array_rand($filmy, min(3, count($filmy)));
+                            $losowaneFilmy = array_rand($filmy, min(5, count($filmy)));
                             echo "<ul class='list-group'>";
+                            
                             foreach ($losowaneFilmy as $index) {
-                                echo "<li class='list-group-item'>" . $filmy[$index] . "</li>";
+                                $filmTytul = $filmy[$index];
+                                echo "<li class='list-group-item'>$filmTytul";
+                                echo " <a href='watch.php?title=" . urlencode($filmTytul) . "' class='btn btn-secondary btn-sm'>Obejrzyj</a></li>";
                             }
+
                             echo "</ul>";
+                            
+                            // Display selected genre
+                            echo "<p class='text-white mt-3'>Filmy z gatunku: ";
+                            switch ($gatunek) {
+                                case 1:
+                                    echo "Horror";
+                                    break;
+                                case 2:
+                                    echo "Romans";
+                                    break;
+                                case 3:
+                                    echo "Akcja";
+                                    break;
+                                case 4:
+                                    echo "Komedia";
+                                    break;
+                                case 5:
+                                    echo "Dreszczowiec";
+                                    break;
+                                case 7:
+                                    echo "Sci-Fi";
+                                    break;
+                                // Add cases for other genres if needed
+                                default:
+                                    echo "Inny";
+                            }
+                            echo "</p>";
                         } else {
                             echo "<p>Brak filmów w wybranym gatunku.</p>";
                         }
