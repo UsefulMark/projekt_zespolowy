@@ -7,36 +7,158 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Mood prediction</title>
 </head>
-<body style="background-color: #2A3047; color: #FFF9CF;">
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #222; /* Dark gray background */
+      overflow: hidden;
+    }
+    ::selection {
+      background: rgba(26, 188, 156, 0.3);
+    }
+    .container {
+      max-width: 475px;
+      padding: 0 19px;
+      margin: 95px auto;
+    }
+    .wrapper {
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+    }
+    .wrapper .title {
+      height: 90px;
+      background: black;
+      border-radius: 5px 5px 0 0;
+      color: #fff; /* White text color */
+      font-size: 36px; /* Increased font size */
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form {
+      padding: 30px 35px 35px 35px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+    }
+    .wrapper form input[type="text"],
+    .wrapper form input[type="password"] {
+      background-color: rgba(255, 255, 255, 0.2);
+	  color: #3498db;
+      border: none;
+      width: 100%;
+      outline: none;
+      padding: 10px;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid #3498db;
+    }
+    .wrapper form input:focus {
+      border-color: #151515;
+	  color: #fff;
+      box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
+    }
+    .wrapper form input::placeholder {
+      color: #151515;
+    }
+    .wrapper form .button input {
+      background-color: #3498db;
+      color: #fff;
+      font-size: 24px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 5%;
+      display: block;
+    }
+    .wrapper form .button input:hover {
+      background: #FFA933;
+    }
+    .wrapper form .row {
+      height: 45px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .wrapper form .row i {
+      position: absolute;
+      width: 47px;
+      height: 100%;
+      color: #151515;
+      font-size: 18px;
+      background: #16a085;
+      border: 1px solid #16a085;
+      border-radius: 5px 0 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form .pass {
+      margin: -8px 0 30px;
+    }
+    .wrapper form .pass a {
+      color: #16a085;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    .wrapper form .pass a:hover {
+      text-decoration: underline;
+    }
+    .wrapper form .signup-link {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 17px;
+    }
+    .wrapper form .signup-link a {
+      color: #16a085;
+      text-decoration: none;
+    }
+    .wrapper form .signup-link a:hover {
+      text-decoration: underline;
+    }
+</style>
+<body style="color: #FFF9CF;">
     <div class="container text-center">
+	<center><div class="wrapper">
         <div class="row">
-            <div class="col-12">
-                <h1>Mood prediction</h1>
+            <div class="col-10">
+                <div class="title"><span>Mood prediction</span></div>
                 <form method="post" action="predict_mood.php">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="ilość_snu" class="form-label">Amount of sleep (in hours):</label>
                         <input type="text" name="ilość_snu" class="form-control">
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="ilość_aktywności" class="form-label">Number of activities:</label>
                         <input type="text" name="ilość_aktywności" class="form-control">
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="poziom_stresu" class="form-label">Stress level (0, 1 or 3):</label>
                         <input type="text" name="poziom_stresu" class="form-control">
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="samopoczucie" class="form-label">Well-being level (1-5):</label>
                         <input type="text" name="samopoczucie" class="form-control">
                     </div>
-
-                    <input type="submit" value="Prediction" class="btn btn-primary">
+					<div class="row button">
+						<center><input type="submit" value="Prediction" class="btn btn-primary"></center>
+					</div>
                 </form>
             </div>
-        </div>
-    </div>
+		</div>
+	</div></center>
+	</div>
 </body>
 </html>
