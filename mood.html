@@ -125,7 +125,10 @@
 		float:left;
 	}
 	.form-label{
-		margin-bottom;
+		margin-bottom: 0.1rem;
+	}
+	.form-group{
+		margin-bottom: .4rem;
 	}
 </style>
 <body style="color: #FFF9CF;">
@@ -141,24 +144,26 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ilość_aktywności" class="form-label">Number of activities:</label>
+                        <label for="ilość_aktywności" class="form-label">Number of life activities:</label>
                         <input type="text" name="ilość_aktywności" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="poziom_stresu" class="form-label">Stress lvl:</label>
 						<select>
+							<option value="999" hidden></option>
 							<option value=0>Brak stresu</option>
-							<option value=1>Lekki strsik</option>
+							<option value=1>Lekki stresik</option>
 							<option value=2>Poddenerowanie</option>
 							<option value=3>dSufhWfdShu</option>
-						</select>
+						</select>	
                         <!--<input type="text" name="poziom_stresu" class="form-control">-->
                     </div>
 
                     <div class="form-group">
                         <label for="samopoczucie" class="form-label">Well-being:</label>
 						<select>
+							<option value="999" hidden></option>
 							<option value="1">Złe</option>
 							<option value="2">Ponure</option>
 							<option value="3">Przeciętne</option>
