@@ -78,8 +78,9 @@ if ($row['count'] > 0) {
 // Użytkownik o podanym loginie nie istnieje, można dokonać rejestracji
 
 // Wprowadzenie danych do bazy danych
+$hash_password= password_hash($haslo, PASSWORD_DEFAULT); // Dodano hashowanie hasła
 $sql = "INSERT INTO users (imie, nazwisko, login, haslo, numer_gatunku, przypomnij) VALUES (?, ?, ?, ?, ?, ?)"; // Dodano "przypomnij" do zapytania
-$params = array($imie, $nazwisko, $login, $haslo, $numer_gatunku, $przypomnij); // Dodano $przypomnij do tablicy $params
+$params = array($imie, $nazwisko, $login, $hash_password, $numer_gatunku, $przypomnij); // Dodano $przypomnij do tablicy $params
 $stmt = sqlsrv_query($conn, $sql, $params);
 
 if ($stmt === false) {

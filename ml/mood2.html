@@ -140,12 +140,12 @@
                 <form method="post" action="predict_mood2.php">
                     <div class="form-group">
                         <label for="ilość_snu" class="form-label">Amount of sleep (in hours):</label>
-						<input type="text" name="ilość_snu" class="form-control">
+						<input type="text" name="ilość_snu" class="form-control" pattern="[0-8]">
                     </div>
 
                     <div class="form-group">
                         <label for="ilość_aktywności" class="form-label">Number of life activities:</label>
-                        <input type="text" name="ilość_aktywności" class="form-control">
+                        <input type="text" name="ilość_aktywności" class="form-control" pattern="[0-3]">
                     </div>
 
                     <div class="form-group">

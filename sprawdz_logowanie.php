@@ -20,9 +20,9 @@ if (!$conn) {
 $login = $_POST['login'];
 $haslo = $_POST['haslo'];
 
-// Sprawdzenie, czy użytkownik o podanym loginie istnieje i czy hasło jest poprawne
-$sql = "SELECT * FROM users WHERE login = ? AND haslo = ?";
-$params = array($login, $haslo);
+// Sprawdzenie, czy użytkownik o podanym loginie istnieje
+$sql = "SELECT * FROM users WHERE login = ?";
+$params = array($login);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
 if ($stmt === false) {
@@ -30,23 +30,33 @@ if ($stmt === false) {
 }
 
 if (sqlsrv_has_rows($stmt)) {
-    // Użytkownik istnieje i dane logowania są poprawne
-    // Zapisz login w sesji
-    $_SESSION['login'] = $login;
+    // Pobierz zapisane hasło z bazy danych
+    $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    $hashed_password_from_db = $row['haslo'];
 
-    // Aktualizuj pole "logged" na TRUE
-    $sql_update_logged = "UPDATE users SET logged = 'true' WHERE login = ?";
-    $params_update_logged = array($login);
-    $stmt_update_logged = sqlsrv_query($conn, $sql_update_logged, $params_update_logged);
+    // Sprawdź, czy hasło jest poprawne za pomocą password_verify
+    if (password_verify($haslo, $hashed_password_from_db)) {
+        // Użytkownik istnieje i dane logowania są poprawne
+        // Zapisz login w sesji
+        $_SESSION['login'] = $login;
 
-    if ($stmt_update_logged === false) {
-        die(print_r(sqlsrv_errors(), true));
+        // Aktualizuj pole "logged" na TRUE
+        $sql_update_logged = "UPDATE users SET logged = 'true' WHERE login = ?";
+        $params_update_logged = array($login);
+        $stmt_update_logged = sqlsrv_query($conn, $sql_update_logged, $params_update_logged);
+
+        if ($stmt_update_logged === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        // Zalogowany użytkownik, przekieruj na stronę "panel.php"
+        header("Location: panel.php");
+    } else {
+        // Użytkownik niezalogowany, hasło nieprawidłowe
+        echo "Błąd logowania. Spróbuj ponownie.";
     }
-
-    // Zalogowany użytkownik, przekieruj na stronę "panel.php"
-    header("Location: panel.php");
 } else {
-    // Użytkownik niezalogowany, możesz przekierować na stronę błędu lub wyświetlić komunikat
+    // Użytkownik niezalogowany, login nieprawidłowy
     echo "Błąd logowania. Spróbuj ponownie.";
 }
 

@@ -123,7 +123,7 @@ if (isset($_SESSION['login'])) {
             </div>
 			
             <div class="signup-link">
-                Don't have an account? <a href="form_reg.php" style="color:#3498db">Sign up</a>
+                Don't have an account? <a href="form_reg.html" style="color:#3498db">Sign up</a>
             </div>
         </div>
     </div>
