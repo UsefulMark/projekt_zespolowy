@@ -116,6 +116,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
     <title>Wynik przewidywania nastroju</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        body {
+            background: #222;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center; /* Center the content */
+        }
+        .container {
+            background-color: black;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1, h2 {
+            color: white;
+        }
+        .btn-primary, .btn-danger, .btn-success {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 25px;
+            font-size: 18px;
+            margin: 5px;
+        }
+        .btn-primary:hover {
+            background: #FFA933;
+        }
+        .result-container {
+            display: inline-block; /* Make the container inline-block */
+            padding: 10px;
+            background-color: #fff;
+            color: #222;
+            border-radius: 5px;
+            margin: 10px 0; /* Add margin above and below the container */
+            width: 80%;
+        }
+        .movie-link {
+            display: block; /* Make each movie link a block element */
+            margin: 5px 0; /* Add margin to movie links */
+        }
+    </style>
 </head>
 <body>
     <div class="container text-center">
@@ -141,7 +183,16 @@ if ($predicted === 'smutny') {
     foreach ($losowe_filmy as $index) {
         $film = $smutne_filmy[$index];
         $searchQuery = urlencode("$film");
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td>";
+        echo "<div class='d-flex justify-content-between'>";
+        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    echo "</table>";
     }
 } elseif ($predicted === 'szczęśliwy') {
     // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
@@ -160,7 +211,17 @@ if ($predicted === 'smutny') {
     foreach ($losowe_filmy as $index) {
         $film = $szczęśliwe_filmy[$index]; // Corrected variable name
         $searchQuery = urlencode("$film");
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td>";
+        echo "<div class='d-flex justify-content-between'>";
+        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    echo "</table>";
     
     }
 } elseif ($predicted === 'neutralny') {
@@ -179,7 +240,18 @@ if ($predicted === 'smutny') {
     foreach ($losowe_filmy as $index) {
         $film = $neutralne_filmy[$index];
         $searchQuery = urlencode("$film");
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";    }
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>"; 
+    
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td>";
+        echo "<div class='d-flex justify-content-between'>";
+        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    echo "</table>";
+    }
 }
 ?>
 

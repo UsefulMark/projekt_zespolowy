@@ -102,17 +102,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <style>
-        /* Dodaj style CSS tutaj */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
         body {
-            background-color: #2A3047;
-            color: #FFF9CF;
+            background: #222;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center; /* Center the content */
+        }
+        .container {
+            background-color: black;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1, h2 {
+            color: white;
+        }
+        .btn-primary, .btn-danger, .btn-success {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 25px;
+            font-size: 18px;
+            margin: 5px;
+        }
+        .btn-primary:hover {
+            background: #FFA933;
         }
         .result-container {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #FFF9CF;
-            color: #2A3047;
+            display: inline-block; /* Make the container inline-block */
+            padding: 10px;
+            background-color: #fff;
+            color: #222;
             border-radius: 5px;
+            margin: 10px 0; /* Add margin above and below the container */
+            width: 80%;
+        }
+        .movie-link {
+            display: block; /* Make each movie link a block element */
+            margin: 5px 0; /* Add margin to movie links */
         }
     </style>
     <title>Wynik przewidywania nastroju</title>
@@ -142,11 +170,33 @@ if ($predicted === 'smutny') {
         $film = $smutne_filmy[$index];
         $searchQuery = urlencode($film);
         
-        // Display link to Google search
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        // // Display link to Google search
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
     
-        // Display button to watch.php
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>";
+        // // Display button to watch.php
+        // echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button style='margin-left: 30px; margin-top:10px;'>Obejrzyj</button></a><br>";
+
+        // echo "<table class='table table-bordered'>";
+        // echo "<tr>";
+        // echo "<td class='d-flex justify-content-between'>";
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        // echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank' class='btn btn-primary'>Obejrzyj</a>";
+        // echo "</td>";
+        // echo "</tr>";
+        // echo "</table>";
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td>";
+        echo "<div class='d-flex justify-content-between'>";
+        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank' class='btn btn-primary'>Obejrzyj</a>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    echo "</table>";
+    
+        
+
     }
     
 } elseif ($predicted === 'szczęśliwy') {
@@ -165,11 +215,23 @@ if ($predicted === 'smutny') {
         $film = $szczęśliwe_filmy[$index];
         $searchQuery = urlencode($film);
         
-        // Display link to Google search
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        // // Display link to Google search
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
     
-        // Display button to watch.php
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>";    }
+        // // Display button to watch.php
+        // echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>";    
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td>";
+        echo "<div class='d-flex justify-content-between'>";
+        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank' class='btn btn-primary'>Obejrzyj</a>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    echo "</table>";
+    
+    }
     
 } elseif ($predicted === 'neutralny') {
     // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
@@ -187,11 +249,24 @@ if ($predicted === 'smutny') {
         $film = $neutralne_filmy[$index];
         $searchQuery = urlencode($film);
         
-        // Display link to Google search
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+        // // Display link to Google search
+        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
     
-        // Display button to watch.php
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>";    }
+        // // Display button to watch.php
+        // echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'><button>Obejrzyj</button></a><br>";   
+    
+        echo "<table class='table table-bordered'>";
+        echo "<tr>";
+        echo "<td>";
+        echo "<div class='d-flex justify-content-between'>";
+        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
+        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank' class='btn btn-primary'>Obejrzyj</a>";
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+    echo "</table>";
+    
+    }
 }
 ?>
 
