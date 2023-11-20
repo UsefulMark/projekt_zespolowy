@@ -35,9 +35,15 @@
             while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                 $filmNazwa = $row["nazwa"];
 
-                echo "<div class='col-md-3 mb-3'><div class='card text-white bg-primary' style='width: 200px; height: 200px;'><div class='card-body'><h5 class='card-title'>$filmNazwa</h5>";
-                echo "<a href='https://www.google.com/search?q=$filmNazwa' target='_blank' class='btn btn-light btn-sm mt-2'>Szukaj na Google</a>";
-                echo "</div></div></div>";
+                echo "<div class='col-md-3 mb-3'>
+                        <div class='card text-white bg-primary' style='width: 200px; height: 250px;'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>$filmNazwa</h5>
+                                <a href='https://www.google.com/search?q=$filmNazwa' target='_blank' class='btn btn-light btn-sm mt-2'>Szukaj na Google</a>
+                                <a href='watch.php?title=" . urlencode($filmNazwa) . "' class='btn btn-success btn-sm mt-2'>Zmień ocenę</a>
+                            </div>
+                        </div>
+                      </div>";
             }
         } else {
             echo "<div class='col-md-12'><p class='text-muted'>Brak historii oglądania.</p></div>";

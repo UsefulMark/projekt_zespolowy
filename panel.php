@@ -127,20 +127,30 @@
     {
       color: white;
     }
+    .btn-primary{
+      background-color: #3498db;
+    }
+    .container{
+      background-color: black;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    element.style{
+    }
   </style>
 </head>
-
+<?php session_start()?>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="text-center">
                     <h1 class="display-4">Panel użytkownika</h1>
                 </div>
                 <?php
+                        ini_set('display_errors', 'Off');
                 // Start a PHP session
-                session_start();
-
+                
                 // Your PHP code here
 
                 // Check if the user is logged in
@@ -206,8 +216,8 @@
                     $numerGatunku = $row_get_gatunku['numer_gatunku'];
 
                     // Display genre number
-                    echo "<div class='alert alert-info'>Numer gatunku: " . $numerGatunku . "</div>";
-                    echo "<div class='alert alert-info'>Login w sesji: " . $login . "</div>";
+                    //echo "<div class='alert alert-info'>Numer gatunku: " . $numerGatunku . "</div>";
+                    //echo "<div class='alert alert-info'>Login w sesji: " . $login . "</div>";
 
                     // Get movies based on the genre number
                     if (isset($filmy[$numerGatunku])) {
@@ -225,8 +235,10 @@
                             $googleSearchLink = "https://www.google.com/search?q=" . urlencode($filmTytul);
 
                             // Dodaj przycisk "Obejrzyj" dla każdego filmu
-                            echo "<a href='$googleSearchLink' class='list-group-item list-group-item-action' target='_blank'>$filmTytul
-                                <a href='watch.php?title=" . urlencode($filmTytul) . "' class='btn btn-success btn-sm float-right'>Obejrzyj</a></a>";
+                            echo "<br><div class='list-group-item list-group-item-action' style='border-radius: 5px;'>
+                            <a href='$googleSearchLink' target='_blank'>$filmTytul</a>
+                            <a href='watch.php?title=" . urlencode($filmTytul) . "' class='btn btn-success btn-sm float-right' style='  border-radius: 5px;'>Obejrzyj</a>
+                          </div>";
                         }
                         echo "</div>";
                     } else {
@@ -235,16 +247,19 @@
 
                     // Logout button
                     echo "<div class='text-center'>
-                    <form method='post' action='wyloguj.php' style='display: inline-block;'>
-                        <input type='submit' class='btn btn-danger' value='Wyloguj' style='margin-top: 10%; width: 200px;'>
-                    </form>              
-                    <form method='post' action='ml/mood.html' style='display: inline-block;'>
-                        <input src=''; type='submit' class='btn btn-danger' value='Predict' style='margin-top: 10%;  width: 200px;'>
-                    </form>
                     <!-- Dodaj przycisk Losuj filmy -->
                     <form method='post' action='losuj_filmy.php' style='display: inline-block;'>
                         <input type='submit' class='btn btn-primary' value='Losuj filmy' style='margin-top: 10%;  width: 200px;'>
                     </form>
+                    <form method='post' action='ml/mood.html' style='display: inline-block;'>
+                        <input src=''; type='submit' class='btn btn-primary' value='Predict' style='margin-top: 10%;  width: 200px;'>
+                    </form><br>
+                    <form method='post' action='rating.php' style='display: inline-block;'>
+                    <input src=''; type='submit' class='btn btn-primary' value='Rating' style='margin-top: 10%;  width: 200px;'>
+                </form><br>
+                    <form method='post' action='wyloguj.php' style='display: inline-block;'>
+                        <input type='submit' class='btn btn-danger' value='Wyloguj' style='margin-top: 10%; width: 200px;'>
+                    </form>              
                 </div>";
 
                     // Close the database connection

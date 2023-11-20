@@ -42,12 +42,13 @@
                         <option value="3">Akcja</option>
                         <option value="4">Komedia</option>
                         <option value="5">Dreszczowiec</option>
-                        <option value="7">Sci-Fi</option>
+                        <option value="6">Sci-Fi</option>
                         <!-- Dodaj tu pozostałe opcje z innymi gatunkami -->
                     </select>
                     <input type="submit" class="btn btn-primary" value="Losuj filmy">
                 </form>
                 <?php
+                        ini_set('display_errors', 'Off');
                     if(isset($_GET['gatunek'])) {
                         $gatunek = $_GET['gatunek'];
                         $lines = file('gatunek.csv');

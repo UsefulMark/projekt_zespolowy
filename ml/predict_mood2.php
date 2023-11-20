@@ -132,6 +132,7 @@ if ($predicted === 'smutny') {
     $csv = array_map('str_getcsv', file('gatunek.csv'));
     $smutne_filmy = array();
     foreach ($csv as $row) {
+        ini_set('display_errors', 'Off');
         if ($row[1] === '1') {
             $smutne_filmy[] = $row[0];
         }
@@ -146,32 +147,39 @@ if ($predicted === 'smutny') {
     // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
     echo "Trzy losowe filmy z gatunkiem 2:<br>";
     $csv = array_map('str_getcsv', file('gatunek.csv'));
-    $szczęśliwe_filmy = array();
-    foreach ($losowe_filmy as $index) {
-        $film = $smutne_filmy[$index];
-        $searchQuery = urlencode("$film");
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+    $szczęśliwe_filmy = array(); // Corrected variable name
+
+    foreach ($csv as $row) {
+        ini_set('display_errors', 'Off');
+        if ($row[1] === '2') {
+            $szczęśliwe_filmy[] = $row[0]; // Corrected variable name
+        }
     }
+
     $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
     foreach ($losowe_filmy as $index) {
-        $film = $szczęśliwe_filmy[$index];
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film); // Dodaj przycisk "Obejrzyj" z tytułem filmu
+        $film = $szczęśliwe_filmy[$index]; // Corrected variable name
+        $searchQuery = urlencode("$film");
+        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+    
     }
 } elseif ($predicted === 'neutralny') {
     // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
     echo "Trzy losowe filmy z gatunkiem 3:<br>";
     $csv = array_map('str_getcsv', file('gatunek.csv'));
     $neutralne_filmy = array();
-    foreach ($losowe_filmy as $index) {
-        $film = $smutne_filmy[$index];
-        $searchQuery = urlencode("$film");
-        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
+    foreach ($csv as $row) {
+        ini_set('display_errors', 'Off');
+        if ($row[1] === '3') {
+            $neutralne_filmy[] = $row[0];
+        }
     }
+   
     $losowe_filmy = array_rand($neutralne_filmy, 3);
     foreach ($losowe_filmy as $index) {
         $film = $neutralne_filmy[$index];
-        echo "<a href='watch.php?title=" . urlencode($film) . "' target='_blank'>$film</a> <a href='watch.php?title=" . urlencode($film); // Dodaj przycisk "Obejrzyj" z tytułem filmu
-    }
+        $searchQuery = urlencode("$film");
+        echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";    }
 }
 ?>
 

@@ -1,5 +1,6 @@
 <?php
 session_start();
+ini_set('display_errors', 'Off');
 
 if (isset($_POST['ocena'])) {
     $ocena = floatval($_POST['ocena']); // Konwertuj ocenę na liczbę zmiennoprzecinkową
