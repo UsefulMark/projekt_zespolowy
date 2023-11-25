@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Your Movie Ratings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -38,10 +39,23 @@
             background-color: rgba(0, 0, 0, 0.7);
             border: none;
         }
+        .home-icon {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 30px;
+    color: white; /* Możesz zmienić kolor według preferencji */
+    z-index: 1000; /* Upewnia się, że ikona jest nad innymi elementami */
+}
+
     </style>
 </head>
 <body>
     <div class="container">
+    <a href="panel.php" class="home-icon">
+    <i class="fas fa-home"></i>
+</a>
+
         <?php
         session_start();
         ini_set('display_errors', 'Off');
@@ -96,35 +110,43 @@
             }
 
             echo "<h1 class='mt-4 mb-4'>Oceny dla poszczególnych gatunków:</h1>";
-
+            echo "<div class='row'>"; // Dodanie kontenera wiersza
+            
             $najwyzszaSrednia = 0;
             $najlepszyGatunek = '';
-
+            
             foreach ($ocenyGatunkow as $gatunek => $data) {
                 $sredniaOcena = $data['licznik'] > 0 ? $data['sumaOcen'] / $data['licznik'] : 0;
-
+            
                 if ($sredniaOcena > $najwyzszaSrednia || ($sredniaOcena == $najwyzszaSrednia && $data['licznik'] > $ocenyGatunkow[$najlepszyGatunek]['licznik'])) {
                     if ($data['licznik'] >= 5) {
                         $najwyzszaSrednia = $sredniaOcena;
                         $najlepszyGatunek = $gatunek;
                     }
                 }
-
-                echo "<div class='card mb-3'>";
+            
+                // Modyfikacja struktury kart
+                echo "<div class='col-md-4 mb-3'>"; // Ustawienie kolumny dla każdej karty
+                echo "<div class='card h-100'>"; // Użycie klasy h-100 dla równych wysokości
                 echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>Gatunek: $gatunek</h5>";
+                echo "<h5 class='card-title text-center'> $gatunek</h5>";
                 echo "<p class='card-text'>Średnia ocena: $sredniaOcena</p>";
                 echo "<p class='card-text'>Liczba ocen: {$data['licznik']}</p>";
                 echo "<p class='card-text'>Suma ocen: {$data['sumaOcen']}</p>";
                 echo "</div>";
                 echo "</div>";
+                echo "</div>";
             }
+            
+            echo "</div>"; // Zamknięcie kontenera wiersza
+            
 
-            echo "<h2 class='mt-4 mb-4'>Najlepszy gatunek:</h2>";
+            // echo "<h2 class='mt-4 mb-4'>Najlepszy gatunek:</h2>";
             echo "<div class='card'>";
             echo "<div class='card-body'>";
-            echo "<h5 class='card-title'>Gatunek: $najlepszyGatunek</h5>";
-            echo "<p class='card-text'>Najwyższa średnia ocen: $najwyzszaSrednia</p>";
+            echo "<h5 class='card-title text-center'>Njlepiej oceniany gatunek: $najlepszyGatunek</h5>";
+            // echo "<h5 class='card-text'>Gatunek: $najlepszyGatunek</h5>";
+            // echo "<p class='card-text'>Najwyższa średnia ocen: $najwyzszaSrednia</p>";
             echo "</div>";
             echo "</div>";
 
@@ -145,7 +167,10 @@
 
                 fclose($handle);
 
-                echo "<h2 class='mt-4 mb-4'>5 losowych filmów gatunku '$najlepszyGatunek', które użytkownik jeszcze nie oglądał:</h2>";
+                
+
+                // echo "<h2 class='mt-4 mb-4 text-center'>Chcesz więcej '$najlepszyGatunek'. Tego jeszcze nie widziałeś!</h2>";
+                echo "<h2 class='mt-4 mb-4 text-center'>Chcesz więcej? Tego jeszcze nie widziałeś!</h2>";
                 echo "<ul class='list-group'>";
                 if (count($losoweFilmy) > 0) {
                     $losoweFilmy = array_rand(array_flip($losoweFilmy), min(5, count($losoweFilmy)));
@@ -173,7 +198,7 @@
 
         $topGatunki = array_slice($ocenyGatunkow, 0, 4, true);
 
-        echo "<h2 class='mt-4 mb-4'>Top gatunki:</h2>";
+        echo "<h2 class='mt-4 mb-4 text-center'>Pozostałe gatunki na topie:</h2>";
 
         foreach ($topGatunki as $gatunek => $data) {
             if ($gatunek == 'Niezdefiniowany' || $gatunek == $najlepszyGatunek) {
@@ -184,10 +209,10 @@
 
             echo "<div class='card mb-3'>";
             echo "<div class='card-body'>";
-            echo "<h5 class='card-title'>Gatunek: $gatunek</h5>";
-            echo "<p class='card-text'>Średnia ocena: $sredniaOcena</p>";
-            echo "<p class='card-text'>Liczba ocen: {$data['licznik']}</p>";
-            echo "<p class='card-text'>Suma ocen: {$data['sumaOcen']}</p>";
+            echo "<h5 class='card-title text-center'>$gatunek</h5>";
+            // echo "<p class='card-text'>Średnia ocena: $sredniaOcena</p>";
+            // echo "<p class='card-text'>Liczba ocen: {$data['licznik']}</p>";
+            // echo "<p class='card-text'>Suma ocen: {$data['sumaOcen']}</p>";
 
             $gatunekId = array_search($gatunek, $mapowanieGatunkow);
             $moviesToDisplay = array();

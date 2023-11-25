@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <title>Losuj Filmy</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -26,10 +28,22 @@
         .search-btn {
             margin-left: 5px;
         }
+        .home-icon {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 30px;
+    color: white; /* Możesz zmienić kolor według preferencji */
+    z-index: 1000; /* Upewnia się, że ikona jest nad innymi elementami */
+}
+
     </style>
 </head>
 <body>
     <div class="container">
+    <a href="panel.php" class="home-icon">
+    <i class="fas fa-home"></i>
+</a>
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <h1>Losuj Filmy</h1>

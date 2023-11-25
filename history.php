@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historia Oglądania</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -93,6 +95,14 @@
 .animated {
     animation: fadeIn 1s ease;
 }
+.home-icon {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    font-size: 30px;
+    color: white; /* Możesz zmienić kolor według preferencji */
+    z-index: 1000; /* Upewnia się, że ikona jest nad innymi elementami */
+}
 
 
     </style>
@@ -100,6 +110,9 @@
 <body>
 
 <div class="container mt-5">
+<a href="panel.php" class="home-icon">
+    <i class="fas fa-home"></i>
+</a>
     <h1 class="text-center">Historia Oglądania</h1>
     <div class="row" id="filmContainer">
         <?php

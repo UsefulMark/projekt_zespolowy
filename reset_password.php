@@ -132,26 +132,43 @@
             $params_update = array($hash_password, $login);
             $stmt_update = sqlsrv_query($conn, $sql_update, $params_update);
 
-            if ($stmt_update === false) {
-                die(print_r(sqlsrv_errors(), true));
-            }
-
-            $rows_affected = sqlsrv_rows_affected($stmt_update);
-
-            if ($rows_affected > 0) {
+            if ($row['count'] > 0) {
+                // Zapytanie do bazy danych w celu aktualizacji hasła użytkownika
+                $hash_password = password_hash($haslo, PASSWORD_DEFAULT);
+                $sql_update = "UPDATE users SET haslo = ? WHERE login = ?";
+                $params_update = array($hash_password, $login);
+                $stmt_update = sqlsrv_query($conn, $sql_update, $params_update);
+            
+                if ($stmt_update === false) {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+            
+                $rows_affected = sqlsrv_rows_affected($stmt_update);
+            
+                if ($rows_affected > 0) {
+                    echo '<script>
+                        if (confirm("Hasło użytkownika zostało zaktualizowane. Kliknij OK, aby przejść do form_log.php.")) {
+                            window.location.href = "form_log.php";
+                        }
+                    </script>';
+                    exit();
+                } else {
+                    echo "Nie udało się zaktualizować hasła. Spróbuj jeszcze raz.";
+                }
+            } else {
                 echo '<script>
-                    var confirmChange = confirm("Hasło użytkownika zostało zaktualizowane. Kliknij OK, aby przejść do form_log.php.");
-                    if (confirmChange) {
-                        window.location.href = "form_log.php"; // Przekierowanie na stronę form_log.php po udanej zmianie hasła
+                    if (confirm("Podane dane są nieprawidłowe. Sprawdź login i przypomnienie hasła. Kliknij OK, aby spróbować ponownie.")) {
+                        window.location.href = window.location.href; // Odświeża obecną stronę
                     }
                 </script>';
-                exit();
-            } else {
-                echo "Użytkownik o podanym loginie nie istnieje.";
             }
         } else {
-            echo "Podane dane są nieprawidłowe. Sprawdź login i przypomnienie hasła.";
-        }
+            echo '<script>
+                if (confirm("Podane dane są nieprawidłowe. Sprawdź login i przypomnienie hasła. Kliknij OK, aby spróbować ponownie.")) {
+                    window.location.href = window.location.href; // Odświeża obecną stronę
+                }
+            </script>';
+        }   
 
         // Zamykanie połączenia z bazą danych
         sqlsrv_close($conn);

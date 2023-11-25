@@ -166,93 +166,120 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1>Wynik przewidywania nastroju</h1>
                 <?php if (isset($predicted)): ?>
                     <div class="result-container">
-                        <h2>Przewidziany nastrój: <?php echo $predicted; ?></h2>
+                        <h2 style="color:black">Przewidziany nastrój: <?php echo $predicted; ?></h2>
                         <?php
+                      
 if ($predicted === 'smutny') {
-    // Wyświetl trzy losowe filmy z gatunkiem 1 jako linki do wyników wyszukiwania w Google
-    echo "Trzy losowe filmy z gatunkiem 1:<br>";
-    $csv = array_map('str_getcsv', file('gatunek.csv'));
-    $smutne_filmy = array();
-    foreach ($csv as $row) {
-        ini_set('display_errors', 'Off');
-        if ($row[1] === '1') {
-            $smutne_filmy[] = $row[0];
+        // Wyświetl trzy losowe filmy z gatunku 3, 2 i 1 jako linki do wyników wyszukiwania w Google
+        echo "Losowe filmy z różnych gatunków:<br>";
+        $csv = array_map('str_getcsv', file('gatunek.csv'));
+        $filmy = array('1' => array(), '2' => array(), '3' => array());
+        
+        foreach ($csv as $row) {
+            ini_set('display_errors', 'Off');
+            // Sprawdź gatunek filmu i dodaj do odpowiedniej kategorii
+            if ($row[1] === '3' || $row[1] === '2' || $row[1] === '1') {
+                $filmy[$row[1]][] = $row[0];
+            }
         }
-    }
-    $losowe_filmy = array_rand($smutne_filmy, 3);
-    foreach ($losowe_filmy as $index) {
-        $film = $smutne_filmy[$index];
-        $searchQuery = urlencode("$film");
-        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
-        echo "<table class='table table-bordered'>";
-        echo "<tr>";
-        echo "<td>";
-        echo "<div class='d-flex justify-content-between'>";
-        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
-        echo "</div>";
-        echo "</td>";
-        echo "</tr>";
-    echo "</table>";
-    }
+    
+        // Dla każdego gatunku wybierz trzy losowe filmy
+        foreach ($filmy as $gatunek => $lista_filmow) {
+            if (count($lista_filmow) >= 3) {
+                $losowe_filmy = array_rand($lista_filmow, 3);
+            } else {
+                $losowe_filmy = array_keys($lista_filmow);
+            }
+            
+            echo "<strong>Gatunek $gatunek:</strong><br>";
+            echo "<table class='table table-bordered'>";
+            foreach ($losowe_filmy as $index) {
+                $film = $lista_filmow[$index];
+                $searchQuery = urlencode("$film");
+                echo "<tr><td>";
+                echo "<div class='d-flex justify-content-between'>";
+                echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></div>";
+                echo "</div>";
+                echo "</td></tr>";
+            }
+            echo "</table>";
+        }
+    
+    
 } elseif ($predicted === 'szczęśliwy') {
-    // Wyświetl trzy losowe filmy z gatunkiem 2 jako linki do wyników wyszukiwania w Google
-    echo "Trzy losowe filmy z gatunkiem 2:<br>";
-    $csv = array_map('str_getcsv', file('gatunek.csv'));
-    $szczęśliwe_filmy = array(); // Corrected variable name
 
-    foreach ($csv as $row) {
-        ini_set('display_errors', 'Off');
-        if ($row[1] === '2') {
-            $szczęśliwe_filmy[] = $row[0]; // Corrected variable name
+        // Wyświetl trzy losowe filmy z gatunku 3, 2 i 1 jako linki do wyników wyszukiwania w Google
+        echo "Losowe filmy z różnych gatunków:<br>";
+        $csv = array_map('str_getcsv', file('gatunek.csv'));
+        $filmy = array('4' => array(), '5' => array(), '6' => array());
+        
+        foreach ($csv as $row) {
+            ini_set('display_errors', 'Off');
+            // Sprawdź gatunek filmu i dodaj do odpowiedniej kategorii
+            if ($row[1] === '4' || $row[1] === '5' || $row[1] === '6') {
+                $filmy[$row[1]][] = $row[0];
+            }
         }
-    }
-
-    $losowe_filmy = array_rand($szczęśliwe_filmy, 3);
-    foreach ($losowe_filmy as $index) {
-        $film = $szczęśliwe_filmy[$index]; // Corrected variable name
-        $searchQuery = urlencode("$film");
-        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>";
-
-        echo "<table class='table table-bordered'>";
-        echo "<tr>";
-        echo "<td>";
-        echo "<div class='d-flex justify-content-between'>";
-        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
-        echo "</div>";
-        echo "</td>";
-        echo "</tr>";
-    echo "</table>";
     
-    }
+        // Dla każdego gatunku wybierz trzy losowe filmy
+        foreach ($filmy as $gatunek => $lista_filmow) {
+            if (count($lista_filmow) >= 3) {
+                $losowe_filmy = array_rand($lista_filmow, 3);
+            } else {
+                $losowe_filmy = array_keys($lista_filmow);
+            }
+            
+            echo "<strong>Gatunek $gatunek:</strong><br>";
+            echo "<table class='table table-bordered'>";
+            foreach ($losowe_filmy as $index) {
+                $film = $lista_filmow[$index];
+                $searchQuery = urlencode("$film");
+                echo "<tr><td>";
+                echo "<div class='d-flex justify-content-between'>";
+                echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></div>";
+                echo "</div>";
+                echo "</td></tr>";
+            }
+            echo "</table>";
+        }
+    
 } elseif ($predicted === 'neutralny') {
-    // Wyświetl trzy losowe filmy z gatunkiem 3 jako linki do wyników wyszukiwania w Google
-    echo "Trzy losowe filmy z gatunkiem 3:<br>";
+    // Wyświetl trzy losowe filmy z gatunku 3, 2 i 1 jako linki do wyników wyszukiwania w Google
+    echo "Losowe filmy z różnych gatunków:<br>";
     $csv = array_map('str_getcsv', file('gatunek.csv'));
-    $neutralne_filmy = array();
+    $filmy = array('1' => array(), '2' => array(), '3' => array());
+    
     foreach ($csv as $row) {
         ini_set('display_errors', 'Off');
-        if ($row[1] === '3') {
-            $neutralne_filmy[] = $row[0];
+        // Sprawdź gatunek filmu i dodaj do odpowiedniej kategorii
+        if ($row[1] === '3' || $row[1] === '2' || $row[1] === '1') {
+            $filmy[$row[1]][] = $row[0];
         }
     }
-   
-    $losowe_filmy = array_rand($neutralne_filmy, 3);
-    foreach ($losowe_filmy as $index) {
-        $film = $neutralne_filmy[$index];
-        $searchQuery = urlencode("$film");
-        // echo "<a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a>"; 
-    
+
+    // Dla każdego gatunku wybierz trzy losowe filmy
+    foreach ($filmy as $gatunek => $lista_filmow) {
+        if (count($lista_filmow) >= 3) {
+            $losowe_filmy = array_rand($lista_filmow, 3);
+        } else {
+            $losowe_filmy = array_keys($lista_filmow);
+        }
+        
+        echo "<strong>Gatunek $gatunek:</strong><br>";
         echo "<table class='table table-bordered'>";
-        echo "<tr>";
-        echo "<td>";
-        echo "<div class='d-flex justify-content-between'>";
-        echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></a></div>";
-        echo "</div>";
-        echo "</td>";
-        echo "</tr>";
-    echo "</table>";
+        foreach ($losowe_filmy as $index) {
+            $film = $lista_filmow[$index];
+            $searchQuery = urlencode("$film");
+            echo "<tr><td>";
+            echo "<div class='d-flex justify-content-between'>";
+            echo "<div class='text-center flex-grow-1'><a href='https://www.google.com/search?q=$searchQuery' target='_blank'>$film</a></div>";
+            echo "</div>";
+            echo "</td></tr>";
+        }
+        echo "</table>";
     }
 }
+
 ?>
 
                         <a href="../index.html"><button class="btn btn-success">OK</button></a>
