@@ -15,81 +15,90 @@
             font-family: 'Poppins', sans-serif;
         }
         body {
-            background: #222; /* Dark gray background */
+            background: url('form1.png') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 475px;
+            padding: 0 19px;
+            margin: 95px auto;
+        }
+        .wrapper {
+            width: 100%;
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+            transform: scale(1);
+        }
+        .wrapper .title {
+            height: 50px;
+            background: #333;
+            border-radius: 5px 5px 0 0;
+            color: #d2b48c;
+            font-size: 36px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-        }
-        .container {
-            max-width: 400px;
-            width: 100%;
-        }
-        .wrapper {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-        }
-        .wrapper .title {
-            color: #fff; /* White text color */
-            font-size: 28px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 20px;
         }
         .wrapper form {
-            background-color: transparent;
-        }
-        .wrapper form label {
-            font-size: 16px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 8px;
-            text-align: left;
-            color: #fff;
+            padding: 30px 35px 35px 35px;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #d2b48c;
+            font-weight: bold;
         }
         .wrapper form input[type="text"],
         .wrapper form input[type="password"] {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-bottom: 2px solid #3498db;
-            width: 100%;
-            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #d2b48c;
+            border: 1px solid #d2b48c;
+            border-radius: 4px;
             padding: 10px;
-            margin-bottom: 15px;
-            color: #fff;
+            margin-bottom: 20px;
+            width: calc(100% - 20px);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .wrapper form input:focus {
+            border-color: #d2b48c;
+            box-shadow: none;
+        }
+        .wrapper form input::placeholder {
+            color: #d2b48c;
         }
         .wrapper form .button input {
-            background-color: #3498db;
-            color: #fff;
-            font-size: 18px;
+            background-color: #d2b48c;
+            color: #333;
+            font-size: 24px;
             border: none;
             padding: 10px 20px;
             border-radius: 10px;
             cursor: pointer;
+            margin-top: 5%;
             display: block;
-            margin: 0 auto;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
         .wrapper form .button input:hover {
-            background: #0b7dda;
-        }
-        .wrapper form .signup-link {
-            text-align: center;
-            margin-top: 20px;
+            background: #a67c00;
             color: #fff;
         }
-        .wrapper form .signup-link a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
+        .wrapper .password-reset-link,
+        .wrapper .signup-link {
+            color: #d2b48c;
+            text-align: center;
+            display: block;
+            margin-top: 20px;
         }
-        .wrapper form .signup-link a:hover {
+        .wrapper .password-reset-link a,
+        .wrapper .signup-link a {
+            color: #d2b48c;
             text-decoration: none;
+            font-weight: bold;
         }
-        .signup-link{
-          text-decoration: none;
+        .wrapper .password-reset-link a:hover,
+        .wrapper .signup-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -97,11 +106,11 @@
 <?php
 session_start();
 if (isset($_SESSION['login'])) {
-    // Jeśli użytkownik jest już zalogowany, przekieruj do panel.php
+    // If the user is already logged in, redirect to panel.php
     header("Location: panel.php");
     exit;
 } else {
-    // Jeśli użytkownik nie jest zalogowany, wyświetl formularz logowania
+    // If the user is not logged in, display the login form
 ?>
     <div class="container">
         <div class="wrapper">
@@ -110,20 +119,20 @@ if (isset($_SESSION['login'])) {
                 <label for="login">Login:</label>
                 <input type="text" name="login" required>
 
-                <label for="haslo">Hasło:</label>
+                <label for="haslo">Password:</label>
                 <input type="password" name="haslo" required>
 
-                <div class="row button">
-                    <input type="submit" value="Zaloguj">
-                </div>
+                <div class="row button"><center>
+                    <input type="submit" value="Login">
+                </div></center>
             </form><br/>
 
             <div class="password-reset-link">
-            Forgot your password? <a href="reset_password.php" style="color:#3498db">Recover password</a>
+            Forgot your neurons? <a href="reset_password.php">Recover password</a>
             </div>
 			
             <div class="signup-link">
-                Don't have an account? <a href="form_reg.html" style="color:#3498db">Sign up</a>
+                Don't have an account? <a href="form_reg.html">Sign up</a>
             </div>
         </div>
     </div>

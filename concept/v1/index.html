@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Webpage</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('back1.png');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .link-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 60%;
+            margin: 20px;
+            background-color: rgba(0, 95, 115, 0.75); /* Semi-transparent dark blue for contrast */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px); /* Soften the background image behind the container */
+        }
+
+        a {
+            font-size: 1.5em;
+            text-decoration: none;
+            color: #ffffff; /* White text for better contrast */
+            transition: transform 0.3s ease, color 0.3s ease;
+            background-color: rgba(255, 253, 220, 0.3); /* Light yellow with transparency */
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        a:hover {
+            color: #ffffff; /* Keep text white on hover for consistency */
+            background-color: #94d2bd; /* Soft green for interactivity */
+            transform: translateY(-5px);
+        }
+
+        a::before, a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #ffffff; /* White lines for a clean appearance */
+            transition: width 0.3s;
+            border-radius: 2px; /* Rounded edges for the animated lines */
+        }
+
+        a:hover::before, a:hover::after {
+            width: 100%;
+        }
+
+        a::before {
+            margin-bottom: 5px;
+        }
+
+        a::after {
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="link-container">
+        <a href="form_reg.html">SIGN UP</a>
+        <a href="ml/mood2.html">START</a>
+        <a href="form_log.php">LOGIN</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinephile Haven</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('back2.png');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Roboto Slab', serif;
+            color: #fff;
+        }
+
+        .link-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 50%;
+            margin: 20px;
+            background-color: rgba(10, 10, 10, 0.85); /* Darker background for better visibility */
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #d2b48c; /* Cinematic gold border */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        a {
+            font-size: 1.8em;
+            text-decoration: none;
+            color: #d2b48c; /* Cinematic gold text */
+            transition: transform 0.3s ease, color 0.3s ease;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(210, 180, 140, 0.5); /* Semi-transparent gold border */
+        }
+
+        a:hover {
+            color: #ffffff; /* White text on hover */
+            background-color: rgba(210, 180, 140, 0.3); /* Semi-transparent gold background on hover */
+            transform: scale(1.05);
+        }
+
+        a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #d2b48c; /* Cinematic gold line */
+            transition: width 0.5s ease;
+            margin-top: 6px;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="link-container">
+        <a href="form_reg.html">Sign Up</a>
+        <a href="ml/mood2.html">Start</a>
+        <a href="form_log.php">Login</a>
+    </div>
+</body>
+</html>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
   </head>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
     * {
@@ -16,11 +17,12 @@
       font-family: 'Poppins', sans-serif;
     }
     body {
-      background: #222; /* Dark gray background */
+      background: url('form1.png') no-repeat center center fixed;
+      background-size: cover;
       overflow: hidden;
     }
     ::selection {
-      background: rgba(26, 188, 156, 0.3);
+      background: rgba(218, 165, 32, 0.3); /* Gold selection for cinematic feel */
     }
     .container {
       max-width: 475px;
@@ -29,17 +31,17 @@
     }
     .wrapper {
       width: 100%;
-      background: #fff;
+      background: rgba(20, 20, 20, 0.85); /* Dark background with opacity for container */
       border-radius: 5px;
       box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
       transform: scale(1);
     }
     .wrapper .title {
-      height: 90px;
-      background: black;
+      height: 50px;
+      background: #333; /* Darker background for the title */
       border-radius: 5px 5px 0 0;
-      color: #fff; /* White text color */
-      font-size: 36px; /* Increased font size */
+      color: #d2b48c; /* Cinematic gold for title text */
+      font-size: 36px;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -47,32 +49,34 @@
     }
     .wrapper form {
       padding: 30px 35px 35px 35px;
-      background-color: black;
-      color: white;
+      background-color: rgba(0, 0, 0, 0.85); /* Dark background for form */
+      color: #d2b48c; /* Cinematic gold for form text */
       font-weight: bold;
     }
     .wrapper form input[type="text"],
-    .wrapper form input[type="password"] {
-      background-color: rgba(255, 255, 255, 0.2);
-	  color: #3498db;
-      border: none;
-      width: 100%;
-      outline: none;
+    .wrapper form input[type="password"],
+    .wrapper form select {
+      background-color: rgba(255, 255, 255, 0.1); /* Translucent input backgrounds */
+      color: #d2b48c; /* Cinematic gold for input text */
+      border: 1px solid #d2b48c; /* Gold border for inputs */
+      border-radius: 4px;
       padding: 10px;
+      margin-bottom: 20px;
+      width: calc(100% - 20px); /* Adjust width considering padding */
       transition: all 0.3s ease;
-      border-bottom: 2px solid #3498db;
+      font-weight: bold;
     }
-    .wrapper form input:focus {
-      border-color: #151515;
-	  color: #fff;
-      box-shadow: inset 2px 2px 2px 2px rgba(26, 188, 20, 0.25);
+    .wrapper form input:focus,
+    .wrapper form select:focus {
+      border-color: #d2b48c;
+      box-shadow: none; /* Removed box shadow to fit the theme better */
     }
     .wrapper form input::placeholder {
-      color: #151515;
+      color: #d2b48c;
     }
     .wrapper form .button input {
-      background-color: #3498db;
-      color: #fff;
+      background-color: #d2b48c; /* Gold background for button */
+      color: #333; /* Dark text for button */
       font-size: 24px;
       border: none;
       padding: 10px 20px;
@@ -80,78 +84,54 @@
       cursor: pointer;
       margin-top: 5%;
       display: block;
+      transition: all 0.3s ease;
     }
     .wrapper form .button input:hover {
-      background: #FFA933;
-    }
-    .wrapper form .row {
-      height: 45px;
-      margin-bottom: 20px;
-      position: relative;
+      background: #a67c00; /* Dark gold on hover */
+      color: #fff;
     }
     .wrapper form .row i {
-      position: absolute;
-      width: 47px;
-      height: 100%;
-      color: #151515;
-      font-size: 18px;
-      background: #16a085;
-      border: 1px solid #16a085;
-      border-radius: 5px 0 0 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #d2b48c; /* Gold icons */
+      background: #333; /* Dark background for icons */
+      border: 1px solid #333; /* Dark border for icons */
     }
-    .wrapper form .pass {
-      margin: -8px 0 30px;
-    }
+    .wrapper form .signup-link a,
     .wrapper form .pass a {
-      color: #16a085;
-      font-size: 17px;
-      text-decoration: none;
+      color: #d2b48c; /* Gold links */
     }
+    .wrapper form .signup-link a:hover,
     .wrapper form .pass a:hover {
       text-decoration: underline;
     }
-    .wrapper form .signup-link {
-      text-align: center;
-      margin-top: 25px;
-      font-size: 17px;
-    }
-    .wrapper form .signup-link a {
-      color: #16a085;
-      text-decoration: none;
-    }
-    .wrapper form .signup-link a:hover {
-      text-decoration: underline;
-    }
+
+    
   </style>
   <body>
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Registration</span></div>
         <form action="zapisz_do_bazy.php" method="post">
-          <div class="form-group">
+          <div class="form-group"><center>
             <label for="imie">Imię:</label>
             <input type="text" name="imie" required>
-          </div>
-          <div class="form-group">
+          </div></center>
+          <div class="form-group"><center>
             <label for="nazwisko">Nazwisko:</label>
             <input type="text" name="nazwisko" required>
-          </div>
-          <div class="form-group">
+          </div></center>
+          <div class="form-group"><center>
             <label for="login">Login:</label>
             <input type="text" name="login" required>
-          </div>
-          <div class="form-group">
+          </div></center>
+          <div class="form-group"><center>
             <label for="haslo">Hasło:</label>
             <input type="password" name="haslo" required>
-          </div>
-          <div class="form-group">
+          </div></center>
+          <div class="form-group"><center>
             <label for="przypomnij">Twoje przezwisko (posluży do odzyskania hasła):</label>
             <input type="text" name="przypomnij" required>
-          </div>
-          <div class="form-group">
+          </div></center>
+          <div class="form-group"><center>
             <label for="numer_gatunku">Film Category:</label>
             <select name="numer_gatunku">
               <option value="999" hidden></option>
@@ -160,9 +140,9 @@
               <option value="3">Akcja</option>
               <option value="4">Komedie</option>
               <option value="5">Dreszczowiec</option>
-              <option value="7">Science Fiction</option>
+              <option value="6">Science Fiction</option>
             </select>
-          </div>
+          </div></center>
           <div class="row button">            
             <center><input class="text-center" type="submit" value="Sign up"></center>
           </div>

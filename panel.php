@@ -3,149 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel użytkownika</title>
+    <title>User Panel</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: #222; /* Dark gray background */
-      overflow: hidden;
-    }
-    ::selection {
-      background: rgba(26, 188, 156, 0.3);
-    }
-    .container {
-      max-width: 1200px;
-      padding: 0 19px;
-      margin: 95px auto;
-    }
-    .wrapper {
-      width: 100%;
-      background: #fff;
-      border-radius: 5px;
-      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
-      transform: scale(1);
-    }
-    .wrapper .title {
-      height: 90px;
-      background: black;
-      border-radius: 5px 5px 0 0;
-      color: #fff; /* White text color */
-      font-size: 36px; /* Increased font size */
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .wrapper form {
-      padding: 30px 35px 35px 35px;
-      background-color: black;
-      color: white;
-      font-weight: bold;
-      display: flex; /* Make the form flex container */
-      flex-wrap: wrap; /* Allow items to wrap to the next line */
-      justify-content: space-between; /* Distribute items evenly */
-    }
-    .wrapper form .form-group {
-      flex-basis: 48%; /* Set the width for form-group divs */
-      margin-bottom: 20px;
-    }
-    .wrapper form .row.button {
-      flex-basis: 100%; /* Full width for buttons */
-      display: flex;
-      justify-content: center; /* Center the buttons */
-    }
-    .wrapper form .row.button input {
-      margin: 0 10px; /* Add spacing between buttons */
-    }
-    .wrapper form input[type="submit"] {
-      background-color: #3498db;
-      color: #fff;
-      font-size: 24px;
-      border: none;
-      padding: 0px 25px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .wrapper form input[type="submit"]:hover {
-      background: #FFA933;
-    }
-    .wrapper form .row {
-      height: 45px;
-      position: relative;
-    }
-    .wrapper form .row i {
-      position: absolute;
-      width: 47px;
-      height: 100%;
-      color: #151515;
-      font-size: 18px;
-      background: #16a085;
-      border: 1px solid #16a085;
-      border-radius: 5px 0 0 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .wrapper form .pass {
-      margin: -8px 0 30px;
-    }
-    .wrapper form .pass a {
-      color: #16a085;
-      font-size: 17px;
-      text-decoration: none;
-    }
-    .wrapper form .pass a:hover {
-      text-decoration: underline;
-    }
-    .wrapper form .signup-link {
-      text-align: center;
-      margin-top: 25px;
-      font-size: 17px;
-    }
-    .wrapper form .signup-link a {
-      color: #16a085;
-      text-decoration: none;
-    }
-    .wrapper form .signup-link a:hover {
-      text-decoration: underline;
-    }
-    .form-group {
-      width: 48%; /* Adjusted width for form groups */
-    }
-    .historia {
-      float: right; /* Move "Historia oglądania" div to the right */
-    }
-    h1
-    {
-      color: white;
-    }
-    .btn-primary{
-      background-color: #3498db;
-    }
-    .container{
-      background-color: black;
-      border-radius: 10px;
-      padding: 20px;
-    }
-    element.style{
-    }
-  </style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        body {
+            background: url('back3.png') no-repeat center center fixed; /* Use the generated background image */
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            color: #d2b48c; /* Gold text color */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+            border-radius: 10px;
+        }
+        .card-header, .card-footer {
+            background-color: rgba(0, 0, 0, 0.85); /* Dark background for headers and footers */
+            color: #d2b48c;
+        }
+        .btn {
+            background-color: #d2b48c; /* Gold background for buttons */
+            border: none;
+            color: #333;
+            margin: 5px;
+        }
+        .btn:hover {
+            background-color: #a67c00; /* Darker gold on hover */
+            color: #fff;
+        }
+        .list-group-item {
+            background-color: rgba(0, 0, 0, 0.85); /* Dark background for list items */
+            color: #d2b48c;
+            border: none;
+        }
+        .list-group-item:hover {
+            background-color: rgba(68, 68, 68, 0.85); /* Lighten on hover */
+        }
+        .title {
+            color: #d2b48c;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .panel{
+          background-color: rgba(255, 255, 255, 0.5); /* rgba(255, 255, 255, opacity) - Tutaj można dostosować kolor tła i poziom przezroczystości */
+          width:50%;
+       
+            
+        }
+        .historia{
+          background-color: rgba(255, 255, 255, 0.5); /* rgba(255, 255, 255, opacity) - Tutaj można dostosować kolor tła i poziom przezroczystości */
+          width: 50%;
+            
+        }
+
+        a, .btn {
+    transition: color 0.3s ease, background-color 0.3s ease; /* Dodaje płynne przejście dla linków i przycisków */
+}
+
+a:hover, .btn:hover {
+    color: #fff; /* Biały tekst na hover */
+    background-color: #a67c00; /* Ciemniejsze złoto na hover */
+    text-decoration: none; /* Usuwa podkreślenie z linków na hover */
+}
+
+.list-group-item:hover {
+    background-color: rgba(68, 68, 68, 0.85); /* Jasniejszy kolor na hover dla elementów listy */
+    color: #fff; /* Biały tekst na hover */
+}
+
+.btn {
+    color: #fff; /* Biały tekst na przyciskach */
+    /* ... istniejące style ... */
+}
+
+/* Zwiększenie nieprzezroczystości paneli dla lepszej czytelności tekstu */
+.panel, .historia {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* ... istniejące style ... */
+}
+    </style>
 </head>
+
 <?php session_start()?>
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-6 panel">
                 <div class="text-center">
-                    <h1 class="display-4">Panel użytkownika</h1>
+                    <h1 class="display-4" >Panel użytkownika</h1>
                 </div>
                 <?php
                         ini_set('display_errors', 'Off');
@@ -228,7 +180,7 @@
 
                     if (!empty($rekomendacje)) {
                         
-                        echo "<h3 style='color: white;'>    Top 3 filmy w wybranym gatunku:</h3>";
+                        echo "<h3 style='color: black;'>    Top 3 filmy w wybranym gatunku:</h3>";
                         echo "<div class='list-group'>";
                         foreach ($rekomendacje as $filmIndex) {
                             $filmTytul = $filmy[$numerGatunku][$filmIndex + 1];
@@ -272,7 +224,7 @@
                 ?>
             </div>
             
-            <div>
+            <div class="historia">
                 <?php
                 // Sample viewing history
                 // $viewingHistory = array(
@@ -311,7 +263,7 @@
     $sql = "SELECT TOP 8 nazwa FROM " . $login ;
     $query = sqlsrv_query($conn, $sql);
 
-    echo "<h3 style='color: white;'>Historia oglądania:</h3>";
+    echo "<center><h3 >Historia oglądania:</h3></center>";
 
     echo "<ul class='text-center list-group'>";
     if ($query) {
